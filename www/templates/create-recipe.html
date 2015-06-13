@@ -1,0 +1,151 @@
+<ion-view>
+  <ion-content class="create-recipe">
+
+    <div ng-show="createRecipeInfo">
+      <h1 class="createRecipe">Create your recipe</h1><br/>
+      <div class="list list-inset recipe-name" ng-class="{'input-error': errors.name}">
+        <label class="item item-input">
+          <input ng-model="$parent.myRecipeName" type="text" placeholder="Recipe title" />
+        </label>
+      </div>
+      <div class="error-message">{{errors.name}}</div>
+      <br/>
+      <div class="course">
+        <select ng-model="$parent.myCourse" class="ion-input-select" ng-options="course.name for course in courses" ng-class="{'input-error': errors.myCourse}">
+          <option value="" selected="selected">Choose the course</option>
+        </select>
+      </div>
+      <div class="error-message">{{errors.myCourse}}</div>
+      <br/>
+      <div class="list list-inset nbPerson" ng-class="{'input-error': errors.nbPerson}">
+        <label class="item item-input">
+          <input ng-model="$parent.nbPerson" type="number" min="0" placeholder="Number of person" />
+        </label>
+      </div>
+      <div class="error-message">{{errors.nbPerson}}</div>
+      <br/>
+      <div class="difficulty">
+        <select ng-model="$parent.difficulty" class="ion-input-select" ng-options="difficulty.name for difficulty in difficulties" ng-class="{'input-error': errors.difficulty}">
+          <option value="" selected="selected">Choose the difficulty</option>
+        </select>
+      </div>
+      <div class="error-message">{{errors.difficulty}}</div>
+      <br/>
+      <div class="list list-inset totalTime" ng-class="{'input-error': errors.totalTime}">
+        <label class="item item-input">
+          <input ng-model="$parent.totalTime" type="number" min="0" placeholder="Total time (in min)" />
+        </label>
+      </div>
+      <div class="error-message">{{errors.totalTime}}</div>
+      <br/>
+      <p>List of ingredients</p>
+      <div class="list">
+        <div class="item item-button-right" ng-repeat="ingredient in ingredients">
+          {{ingredient.qte}} {{ingredient.unit}}<span ng-if="ingredient.qte || ingredient.unit"> of </span>{{ingredient.name}}
+          <button ng-click="deleteIngredient($index)" class="button button-assertive button-clear">
+            <i class="icon ion-close-round"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="list-ingredients">
+        <div class="list list-inset ingredients" ng-class="{'input-error': (errors.listIngredient || errors.ingredient.name || errors.ingredient.qte || errors.ingredient.unit)}">
+          <label class="item item-input">
+            <input ng-model="$parent.currentIngredient.name" class="name" type="text" placeholder="Ingredient" />
+            <input ng-model="$parent.currentIngredient.qte" class="qte" type="number" min="0" placeholder="Quantity" />
+            <input ng-model="$parent.currentIngredient.unit" class="unit" type="text" placeholder="Unit" />
+          </label>
+        </div>
+        <div class="list list-inset add-ingredient-button">
+          <button ng-click="addIngredient()" class="button icon ion-plus-round"></button>
+        </div>
+      </div>
+      <div class="error-message">{{errors.listIngredient}}</div>
+      <div class="error-message">{{errors.ingredient.name}}</div>
+      <div class="error-message">{{errors.ingredient.qte}}</div>
+      <div class="error-message">{{errors.ingredient.unit}}</div>
+      <br/>
+
+      <p>List of utensils</p>
+      <div class="list">
+        <div class="item item-button-right" ng-repeat="utensil in utensils">
+          {{utensil}}
+          <button ng-click="deleteUtensil($index)" class="button button-assertive button-clear">
+            <i class="icon ion-close-round"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="list-utensils">
+        <div class="list list-inset utensils" ng-class="{'input-error': errors.currentUtensil}">
+          <label class="item item-input">
+            <input ng-model="$parent.currentUtensil" class="name" type="text" placeholder="Utensil" />
+          </label>
+        </div>
+        <div class="list list-inset add-utensil-button">
+          <button ng-click="addUtensil()" class="button icon ion-plus-round"></button>
+        </div>
+      </div>
+      <div class="error-message">{{errors.currentUtensil}}</div>
+      <br/>
+
+      <button ng-click="newStep()" class="button button-block button-positive">Next</button>
+      <br/>
+    </div>
+
+
+    <div ng-show="createStep">
+      <div class="header-step">
+        <div class="step-name">
+          <h1>Step {{currentStep.number}}</h1>
+        </div>
+        <div class="step-delete-button">
+          <button ng-click="deleteStep()" class="button button-assertive button-clear button-delete-step">
+            <i class="icon ion-close-round"></i>
+          </button>
+        </div>
+      </div>
+      <br/>
+      <label class="item item-input textarea" ng-class="{'input-error': errors.step.action}">
+        <textarea ng-model="$parent.currentStep.action" placeholder="Do..."></textarea>
+      </label>
+      <div class="error-message">{{errors.step.action}}</div>
+      <br/>
+      <button ng-click="showTimer()" class="button button-block icon-left ion-clock button-assertive">Set timer</button>
+      <div ng-show="timer" class="item item-input time" ng-class="{'input-error': errors.step.time}">
+        <input ng-model="$parent.currentStep.time" class="input time" type="number" min="0" placeholder="Time (in min)" />
+      </div>
+      <div class="error-message">{{errors.step.time}}</div>
+      <br/><br/>
+      <button ng-click="showPic()" class="button button-block icon-left ion-camera button-assertive">Add picture</button>
+        <div ng-show="pic" class="stepPic">
+          <picture-upload uploaded-picture="currentStep.picture" callback="setPicture" getPictureUrl="getPicture"></picture-upload>
+        </div>
+      <br/><br/>
+      <button ng-click="stepBack()" class="button icon-left ion-reply button-assertive">Step back</button>
+      <button ng-click="newStep()" class="button icon-right ion-forward button-assertive">Next Step</button>
+      <br/>
+      <div class="forgot">
+        <a ng-click="insertStep()" class="forgot-link">Forgot a step? Insert one here...</a>
+      </div>
+      <br/>
+      <button ng-click="finishRecipe()" class="button button-assertive">Finish</button>
+    </div>
+
+    <div ng-show="finishStep" class="end">
+      <div class="back">
+        <button ng-click="back()" class="button icon-left ion-reply button-assertive button-clear button-back">Back</button>
+      </div>
+      <i class="icon ion-camera camera"></i>
+      <p class="last-step-picture">Please select the main picture for your recipe</p>
+      <br/>
+        <picture-upload uploaded-picture="finalPicture" callback="setPicture"></picture-upload>
+      <br/>
+      <button ng-show="finalPicture" ng-click="finishRecipeAll()" ng-disabled="dataLoading" class="button button-block button-positive save-all">Save All</button>
+
+
+      <br/>
+    </div>
+
+  </ion-content>
+</ion-view>

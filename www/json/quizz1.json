@@ -1,0 +1,22 @@
+{"quizlist":[
+
+  {
+  "question":"Which animal is a felide?",
+  "option1":"mouse",
+  "option2":"lion",
+  "option3":"horse"
+  },
+  {
+  "question":"Which animal is a dog?",
+  "option1":"labrador",
+  "option2":"etalon",
+  "option3":"siamoi"
+  },
+  {
+  "question":"Which is the name of the capital of France?",
+  "option1":"Lyon",
+  "option2":"Marseille",
+  "option3":"Paris"
+  }
+  
+]

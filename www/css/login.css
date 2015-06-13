@@ -1,0 +1,58 @@
+@font-face {
+    font-family: delux;
+    src: url(delux.ttf);
+}
+
+/* about the entire page */
+.login {
+  text-align: center;
+  padding-left: 5px;
+  padding-top: 70px;
+  font-size: 16px;
+}
+
+/* about the logo of our application */
+.login .logo {
+  font-family: delux;
+  font-size: 35px;
+}
+
+/* about the form (email+pwd) */
+.login .list {
+  text-align: left;
+  width: 98%;
+  margin-top: 60px;
+}
+.login .list .item.item-input {
+  margin-top: 13px;
+}
+
+/* about the submit button */
+.login .button.button-block.button-assertive {
+  background-color: #800000;
+  border-color: #800000;
+  box-shadow: 5px 5px 5px grey;
+  font-size: 25px;
+  font-family: delux;
+  width: 98%;
+}
+
+/* about the form (inputs+submit button) */
+.login .form {
+  width: 85%;
+  margin: 0px auto;
+}
+
+/*----------------------------------------------------------------*/
+/*---------------------------ERRORS-------------------------------*/
+
+.login .input-error{
+  border: 1px solid red !important;
+}
+
+.login .error-message{
+  text-align: left;
+  color: red;
+  font-style: italic;
+  width: 90%;
+}

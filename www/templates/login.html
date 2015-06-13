@@ -1,0 +1,33 @@
+<ion-view>
+  <ion-content class="login">
+
+    <div class="logo">
+      <img src="img/Cookie/CookeasyLogo.png"/>Cookeasy
+    </div>
+
+<div class="form">
+    <div class="list">
+      <label class="item item-input" ng-class="{'input-error': error}">
+        <span class="input-label">Email/Username</span>
+        <input ng-model="user.email" type="text" />
+      </label>
+      <label class="item item-input" ng-class="{'input-error': error}">
+        <span class="input-label">Password</span>
+        <input ng-model="user.password" type="password" />
+      </label>
+      <div class="error-message">{{error}}</div>
+    </div>
+    <button ng-click="login()" class="button button-block button-assertive">Submit</button>
+</div>
+
+    <div class="sign-up-forgot-pwd-link">
+      <a ui-sref="signUp">Sign up</a>
+      <!-- <a ui-sref="">Forgot password</a> -->
+    </div>
+
+    <div class="sign-up-with">
+
+    </div>
+
+  </ion-content>
+</ion-view>

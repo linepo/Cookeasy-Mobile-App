@@ -1,0 +1,44 @@
+<ion-view>
+  <ion-content class="search-recipe">
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input ng-model="$parent.mySearchRecipe" ng-change="searchRecipe()" ng-model-options="{debounce : 500}" type="text" placeholder="Search a recipe">
+      </label>
+    </div>
+
+    <div class="display-recipes-list" ng-repeat="recipe in recipes" ng-if="$index%3 === 0">
+        <div class="row" ng-if="$index < recipes.length">
+          <div class="col col-50">
+            <div class="recipe-card" ng-click="displayRecipe(recipes[$index]._id)">
+              <div class="recipe-picture">
+                <img ng-src="{{recipes[$index].picture.thumbUrl}}" alt="Recipe Photo" />
+              </div>
+              <div class="recipe-name">{{recipes[$index].name}}</div>
+            </div>
+          </div>
+          <div class="col col-50" ng-if="$index+1 < recipes.length">
+            <div class="recipe-card" ng-click="displayRecipe(recipes[$index+1]._id)">
+              <div class="recipe-picture">
+                <img ng-src="{{recipes[$index+1].picture.thumbUrl}}" alt="Recipe Photo" />
+              </div>
+              <div class="recipe-name">{{recipes[$index+1].name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-if="$index+2 < recipes.length">
+          <div class="col col-100">
+            <div class="recipe-card" ng-click="displayRecipe(recipes[$index+2]._id)">
+              <div class="recipe-picture">
+                <img ng-src="{{recipes[$index+2].picture.thumbUrl}}" alt="Recipe Photo" />
+              </div>
+              <div class="recipe-name">{{recipes[$index+2].name}}</div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>

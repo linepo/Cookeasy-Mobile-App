@@ -1,0 +1,46 @@
+<ion-view>
+  <ion-content class="sign-up">
+
+    <div class="logo">
+      <img src="img/Cookie/CookeasyLogo.png"/>Cookeasy
+    </div>
+
+  <div ng-hide="createAccount">
+    <div class="form">
+        <div class="list">
+          <label class="item item-input" ng-class="{'input-error': error}">
+            <span class="input-label">Email</span>
+            <input ng-model="user.email" type="text" />
+          </label>
+          <label class="item item-input" ng-class="{'input-error': error}">
+            <span class="input-label">Password</span>
+            <input ng-model="user.password" type="password" />
+          </label>
+          <label class="item item-input" ng-class="{'input-error': error}">
+            <span class="input-label">Confirmed Password</span>
+            <input ng-model="user.confirmPassword" type="password" />
+          </label>
+          <div class="error-message">{{error}}</div>
+        </div>
+
+        <button ng-click="newUser()" class="button button-block button-assertive">Validate</button>
+    </div>
+  </div>
+
+  <div ng-show="createAccount">
+    <p> Pick a nice name before we start ;) </p>
+    <div class="form2">
+        <div class="list2">
+          <label class="item item-input" ng-class="{'input-error': error}">
+            <span class="input-label">Username</span>
+            <input ng-model="user.username" type="text" />
+          </label>
+          <div class="error-message">{{error}}</div>
+        </div>
+
+        <button ng-click="register()" class="button button-block button-assertive">Register</button>
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>

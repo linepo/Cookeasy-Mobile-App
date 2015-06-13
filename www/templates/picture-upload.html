@@ -1,0 +1,23 @@
+<div ng-controller="PictureUploadCtrl">
+  <div class="picture-upload">
+
+    <div>
+      <div ng-show="notLoadedPic" class="import">
+        <button ng-click="importPicture()" class="button button-block button-positive import">Import a picture</button>
+      </div>
+      <div ng-show="notLoadedPic" class="take">
+        <button ng-click="takePicture()" class="button button-block button-positive take">Take a picture</button>
+      </div>
+      <div ng-show="loadedPic" ng-if="uploadProgress" class="progress">
+        <progress max="100" value="{{uploadProgress}}"></progress>
+      </div>
+      <div ng-show="loadedPic" ng-if="uploadedPicture" class="picture">
+        <img ng-src="{{uploadedPicture.thumbUrl}}"/>
+      </div>
+      <div ng-show="loadedPic" class="upload">
+        <button ng-click="uploadPicture()" class="button button-block button-positive upload">Upload the picture</button>
+      </div>
+    </div>
+
+  </div>
+</div>

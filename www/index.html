@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>CookApp</title>
+
+    <!-- Ionic Libs -->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- ng file upload -->
+    <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
+
+    <!-- Cordova Script -->
+    <script src="lib/ng-cordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- My App -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/create-recipe.css" rel="stylesheet">
+    <link href="css/display-recipe.css" rel="stylesheet">
+    <link href="css/search-recipe.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+    <link href="css/my-profile.css" rel="stylesheet">
+    <link href="css/picture-upload.css" rel="stylesheet">
+    <link href="css/popover.css" rel="stylesheet">
+    <link href="css/sign-up.css" rel="stylesheet">
+    <link href="css/games.css" rel="stylesheet">
+
+    <script src="js/app.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/services.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers.js"></script>
+    <script src="js/Controllers/AppCtrl.js"></script>
+    <script src="js/Controllers/CreateRecipeCtrl.js"></script>
+    <script src="js/Controllers/DisplayRecipeCtrl.js"></script>
+    <script src="js/Controllers/GamesCtrl.js"></script>
+    <script src="js/Controllers/LoginCtrl.js"></script>
+    <script src="js/Controllers/MenuCtrl.js"></script>
+    <script src="js/Controllers/MyProfileCtrl.js"></script>
+    <script src="js/Controllers/SearchRecipeCtrl.js"></script>
+    <script src="js/Controllers/SignUpCtrl.js"></script>
+    <script src="js/Controllers/PictureUploadCtrl.js"></script>
+
+    <script src="js/directives.js"></script>
+
+  </head>
+
+  <body ng-controller="AppCtrl">
+    <div ng-show="showHeader" class="bar bar-header bar-assertive">
+
+      <div class="menu-button">
+      <a ui-sref="menu">
+      <button class="button button-clear cookie"><img src="img/Cookie/CookeasyLogo2.png">Cookeasy</button>
+      </a>
+      </div>
+
+      <div class="searchRecipe-button">
+      <a ui-sref="searchRecipe">
+        <button class="button button-clear cfc"><img src="img/CFC/cfc.png"></button>
+      </a>
+      </div>
+
+      <div class="games-button">
+      <a ui-sref="games">
+      <button class="button icon ion-university button-clear"></button>
+      </a>
+      </div>
+
+      <div class="myProfile-button">
+      <img ng-click="popover.show($event)" src="/img/Avatar/AvatarTest.png">
+      </div>
+
+    </div>
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

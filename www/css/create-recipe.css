@@ -1,0 +1,268 @@
+/* about the entire page */
+.create-recipe {
+  text-align: center;
+  margin-top: 50px;
+}
+/*----------------------------------------------------------------*/
+/*---------------------------BUTTONS------------------------------*/
+/* for the "Next" button on the first page
+* and for the "Set timer" and "Add photo" on each step page*/
+.create-recipe .button.button-block {
+  background-color: #800000;
+  border-color: #800000;
+  vertical-align:middle;
+  width: 95%;
+  margin: 0px auto;
+  box-shadow: 2px 2px 2px grey;
+}
+
+/* for every button on each step page*/
+.create-recipe .button.button-assertive {
+  background-color: #800000;
+  border-color: #800000;
+  box-shadow: 2px 2px 2px grey;
+}
+.create-recipe .button.button-block.button-assertive {
+  background-color: #ef473a;
+  border-color: #e42012;
+  box-shadow: 2px 2px 2px grey;
+}
+
+/* about the "set timer" button*/
+.create-recipe .button.button-block.icon-left.ion-clock.button-assertive {
+  box-shadow: 0px 0px 0px #fff;
+  background-color: #E9967A;
+  border-color: #E9967A;
+}
+/* about the "add photo" button */
+.create-recipe .button.button-block.icon-left.ion-camera.button-assertive {
+  box-shadow: 0px 0px 0px #fff;
+  background-color: #E9967A;
+  border-color: #E9967A;
+}
+/* about the "delete step" button */
+.create-recipe .button.button-assertive.button-clear.button-delete-step {
+  color: #B00000;
+  background-color: #FFE4E1;
+  border-color: #FFE4E1;
+  box-shadow: 0px 0px 0px #FFE4E1;
+}
+/*----------------------------------------------------------------*/
+/*-------------------INGREDIENTS & UTENSILS-----------------------*/
+/* about the list of ingredients with the add-ingredient-button
+* and the delete-ingredient-button*/
+.create-recipe .name {
+  max-width: 90px;
+}
+.create-recipe .qte {
+  max-width: 70px;
+}
+.create-recipe .unit {
+  max-width: 50px;
+}
+.create-recipe .button.icon.ion-plus-round {
+  border-radius: 3px;
+  font-size: 90px;
+}
+.create-recipe .list .item {
+  text-align: left;
+  padding-left: 20px;
+}
+.create-recipe .list .item.item-button-right {
+  width:90%;
+  padding: 15px 10px;
+  margin: 0px auto;
+}
+.create-recipe .button.button-assertive.button-clear {
+  color: #B00000;
+  background-color: #fff;
+  border-color: #fff;
+  box-shadow: 0px 0px 0px #fff;
+}
+.create-recipe .list-ingredients {
+  width: 100%;
+}
+.create-recipe .list-ingredients .ingredients {
+  width: 70%;
+  display: inline-block;
+  margin: 0px;
+}
+.create-recipe .list-ingredients .add-ingredient-button {
+  display: inline-block;
+}
+
+/* about the list of utensils with the add-utensil-button */
+.create-recipe .list-utensils {
+  width: 100%;
+}
+.create-recipe .list-utensils .utensils {
+  width: 70%;
+  display: inline-block;
+  margin: 0px;
+}
+.create-recipe .list-utensils .add-utensil-button {
+  display: inline-block;
+}
+/*----------------------------------------------------------------*/
+/*---------------------------INPUTS-------------------------------*/
+/* about the input of the name of the recipe created */
+.create-recipe .recipe-name {
+  vertical-align: middle;
+  width: 90%;
+  padding: 5px 0px;
+  margin: 0px auto;
+}
+
+/* for each input of the user about ingredients and recipe title */
+.create-recipe .list-inset .item.item-input input {
+  padding-right: 10px;
+}
+
+/* about the type of course for this recipe */
+.create-recipe .course {
+  width: 100%;
+  text-align: center;
+}
+/* about the number per person */
+.create-recipe .nbPerson {
+  vertical-align: middle;
+  width: 90%;
+  padding: 5px 0px;
+  margin: 0px auto;
+}
+/* for the type of cook for this recipe */
+.create-recipe .ion-input-select {
+  -webkit-appearance:none;
+  border:thin solid #dddddd;
+  vertical-align:middle;
+  color:#333;
+  padding: 5px 0px;
+  overflow:hidden;
+  box-sizing:border-box;
+  width:90%;
+  font-size:1rem;
+  text-indent:20px;
+  background-image: url(http://i.imgur.com/nA9xx1X.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: #fff;
+}
+/* about the total time to do the recipe */
+.create-recipe .totalTime {
+  vertical-align: middle;
+  width: 90%;
+  padding: 5px 0px;
+  margin: 0px auto;
+}
+
+/* about the time in the step page */
+.create-recipe .item.item-input.time {
+  width: 95%;
+  vertical-align: middle;
+  margin: 0px auto;
+  text-align: center !important;
+}
+.create-recipe .item.item-input.time .input.time {
+  text-align: center !important;
+  padding-right: 0px;
+}
+
+/* about the picture in the step page */
+.create-recipe .stepPic {
+  background-color: white;
+  width: 95%;
+  margin: 0px auto;
+  border: 1px solid #D0D0D0;
+  box-sizing: border-box;
+}
+
+/* about the textarea for the description of a step */
+.create-recipe .item-input.textarea {
+  width: 95%;
+  text-align: center;
+  padding: 6px 2px 6px 2px;
+  margin-right: 0px;
+  vertical-align: middle;
+  margin: 0px auto;
+}
+.create-recipe textarea {
+  height: 80px;
+}
+
+/* about the link to insert a new step if forgot one*/
+.create-recipe .forgot {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.create-recipe .forgot-link {
+  font-style: italic;
+  color: blue;
+  text-decoration: underline;
+}
+
+/*----------------------------------------------------------------*/
+/*---------------------------TITLES-------------------------------*/
+/* about the title of every step */
+.create-recipe h1 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  margin-top: 15px;
+}
+/* about the title of the create-recipe page */
+.create-recipe h1.createRecipe {
+  font-size: 30px;
+  border-style: groove;
+  border-color: black;
+}
+
+/* about the header of the step page */
+.create-recipe .header-step {
+  width: 100%;
+}
+.create-recipe .header-step .step-delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+/*----------------------------------------------------------------*/
+/*---------------------------ERRORS-------------------------------*/
+
+.create-recipe .input-error{
+  border: 1px solid red !important;
+}
+
+.create-recipe .error-message{
+  text-align: left;
+  color: red;
+  font-style: italic;
+  width: 90%;
+  margin: 0px auto;
+}
+
+/*----------------------------------------------------------------*/
+/*------------------------LAST PAGE WITH PICTURE------------------*/
+.create-recipe .end {
+
+}
+.create-recipe .back{
+  text-align: left;
+  padding-left: 12px;
+}
+.create-recipe .button.icon-left.ion-reply.button-assertive.button-clear.button-back {
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+}
+.create-recipe .camera{
+  font-size: 100px;
+  text-align: center;
+  margin-top: 10px;
+}
+.create-recipe .last-step-picture{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 15px;
+  line-height: 90%;
+}

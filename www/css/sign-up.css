@@ -1,0 +1,76 @@
+@font-face {
+    font-family: delux;
+    src: url(delux.ttf);
+}
+
+/* about the entire page */
+.sign-up {
+  text-align: center;
+  padding-left: 5px;
+  padding-top: 50px;
+  font-size: 16px;
+}
+
+/* -----------------------page 1--------------------------------- */
+/* about the logo of our application */
+.sign-up .logo {
+  font-family: delux;
+  font-size: 35px;
+}
+
+/* about the form (email+pwd+confirmed pwd) */
+.sign-up .list {
+  text-align: left;
+  width: 98%;
+  margin-top: 60px;
+}
+.sign-up .list .item.item-input {
+  margin-top: 13px;
+}
+
+/* about the register button */
+.sign-up .button.button-block.button-assertive {
+  background-color: #800000;
+  border-color: #800000;
+  box-shadow: 5px 5px 5px grey;
+  font-size: 25px;
+  font-family: delux;
+  width: 98%;
+}
+
+/* about the form (inputs+register button) */
+.sign-up .form {
+  width: 85%;
+  margin: 0px auto;
+}
+
+/* -----------------------page 2--------------------------------- */
+.sign-up p {
+  margin-top: 80px;
+}
+
+/* about the form (username) */
+.sign-up .list2 {
+  text-align: left;
+  width: 98%;
+  margin-top: 10px;
+}
+/* about the form2 (input+validate button) */
+.sign-up .form2 {
+  width: 85%;
+  margin: 0px auto;
+}
+
+/*----------------------------------------------------------------*/
+/*---------------------------ERRORS-------------------------------*/
+
+.sign-up .input-error{
+  border: 1px solid red !important;
+}
+
+.sign-up .error-message{
+  text-align: left;
+  color: red;
+  font-style: italic;
+  width: 90%;
+}

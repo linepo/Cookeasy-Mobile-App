@@ -17,7 +17,8 @@
       </label>
       <div class="error-message">{{error}}</div>
     </div>
-    <button ng-click="login()" class="button button-block button-assertive">Submit</button>
+    <button ng-click="login()" ng-disabled="dataLoading" class="button button-block button-assertive">Submit</button>
+    <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
 </div>
 
     <div class="sign-up-forgot-pwd-link">

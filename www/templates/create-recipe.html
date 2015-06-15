@@ -142,8 +142,7 @@
         <picture-upload uploaded-picture="finalPicture" callback="setPicture"></picture-upload>
       <br/>
       <button ng-show="finalPicture" ng-click="finishRecipeAll()" ng-disabled="dataLoading" class="button button-block button-positive save-all">Save All</button>
-
-
+      <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
       <br/>
     </div>
 

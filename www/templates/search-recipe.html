@@ -13,7 +13,7 @@
           <div class="col col-50">
             <div class="recipe-card" ng-click="displayRecipe(recipes[$index]._id)">
               <div class="recipe-picture">
-                <img ng-src="{{recipes[$index].picture.thumbUrl}}" alt="Recipe Photo" />
+                <img ng-src="{{recipes[$index].picture.thumbUrlSquare}}" alt="Recipe Photo" />
               </div>
               <div class="recipe-name">{{recipes[$index].name}}</div>
             </div>
@@ -21,7 +21,7 @@
           <div class="col col-50" ng-if="$index+1 < recipes.length">
             <div class="recipe-card" ng-click="displayRecipe(recipes[$index+1]._id)">
               <div class="recipe-picture">
-                <img ng-src="{{recipes[$index+1].picture.thumbUrl}}" alt="Recipe Photo" />
+                <img ng-src="{{recipes[$index+1].picture.thumbUrlSquare}}" alt="Recipe Photo" />
               </div>
               <div class="recipe-name">{{recipes[$index+1].name}}</div>
             </div>
@@ -32,7 +32,7 @@
           <div class="col col-100">
             <div class="recipe-card" ng-click="displayRecipe(recipes[$index+2]._id)">
               <div class="recipe-picture">
-                <img ng-src="{{recipes[$index+2].picture.thumbUrl}}" alt="Recipe Photo" />
+                <img ng-src="{{recipes[$index+2].picture.thumbUrlLarge}}" alt="Recipe Photo" />
               </div>
               <div class="recipe-name">{{recipes[$index+2].name}}</div>
             </div>

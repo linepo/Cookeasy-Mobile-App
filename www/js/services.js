@@ -43,7 +43,10 @@ angular.module('starter.services', [])
       } else {
         deferred.resolve(data.id);
       }
+    }).error(function(error){
+      deferred.reject(error);
     });
+
     return deferred.promise;
   };
 
@@ -55,7 +58,10 @@ angular.module('starter.services', [])
       } else {
         deferred.resolve(data.recipe);
       }
+    }).error(function(error){
+      deferred.reject(error);
     });
+
     return deferred.promise;
   };
 
@@ -77,7 +83,10 @@ angular.module('starter.services', [])
       } else {
         deferred.resolve(data.comment);
       }
+    }).error(function(error){
+      deferred.reject(error);
     });
+
     return deferred.promise;
   };
 
@@ -94,13 +103,15 @@ angular.module('starter.services', [])
     };
 
     $http(req).success(function(data){
-      console.log(data);
       if(data.error){
         deferred.reject(data.error);
       } else {
         deferred.resolve(data.recipes);
       }
+    }).error(function(error){
+      deferred.reject(error);
     });
+
     return deferred.promise;
   };
 

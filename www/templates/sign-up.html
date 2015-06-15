@@ -38,7 +38,8 @@
           <div class="error-message">{{error}}</div>
         </div>
 
-        <button ng-click="register()" class="button button-block button-assertive">Register</button>
+        <button ng-click="register()" ng-disabled="dataLoading" class="button button-block button-assertive">Register</button>
+        <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
     </div>
   </div>
 

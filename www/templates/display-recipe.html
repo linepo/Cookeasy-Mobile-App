@@ -16,7 +16,7 @@
     </div>
     <br/>
     <div class="recipe-photo">
-      <img ng-src="{{recipe.picture.thumbUrl}}" alt="Recipe Photo" />
+      <img ng-src="{{recipe.picture.thumbUrlLarge}}" alt="Recipe Photo" />
     </div>
     <div class="recipe-info-creation">
       Created on {{recipe.createdOn | date}}, by {{recipe.author}}
@@ -54,7 +54,7 @@
 
       <div class="previous-recipe-pictures">
         <p>Pictures of this recipe by other users:</p>
-        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures track by $index" ng-src="{{picture.thumbUrl}}"/>
+        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures track by $index" ng-src="{{picture.miniThumbUrlSquare}}"/>
       </div>
       <br/>
 
@@ -120,7 +120,7 @@
         <button ng-click="stepBack()" class="button ion-reply button-assertive"></button>
       </div>
       <div class="picture-step">
-        <img class="recipe-step-picture" ng-src="{{currentStep.picture.thumbUrl}}" alt="Recipe Step Photo" />
+        <img class="recipe-step-picture" ng-src="{{currentStep.picture.thumbUrlLarge}}" alt="Recipe Step Photo" />
       </div>
       <div class="button-next">
         <button ng-click="stepForward()" class="button ion-forward button-assertive"></button>

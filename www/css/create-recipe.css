@@ -8,8 +8,8 @@
 /* for the "Next" button on the first page
 * and for the "Set timer" and "Add photo" on each step page*/
 .create-recipe .button.button-block {
-  background-color: #800000;
-  border-color: #800000;
+  background-color: #800000 !important;
+  border-color: #800000 !important;
   vertical-align:middle;
   width: 95%;
   margin: 0px auto;

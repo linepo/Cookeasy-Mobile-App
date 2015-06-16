@@ -41,7 +41,7 @@
       <p>List of ingredients</p>
       <div class="list">
         <div class="item item-button-right" ng-repeat="ingredient in ingredients">
-          {{ingredient.qte}} {{ingredient.unit}}<span ng-if="ingredient.qte || ingredient.unit"> of </span>{{ingredient.name}}
+          {{ingredient.qte}} {{ingredient.unit}}<span ng-if="ingredient.unit"> of </span>{{ingredient.name}}
           <button ng-click="deleteIngredient($index)" class="button button-assertive button-clear">
             <i class="icon ion-close-round"></i>
           </button>
@@ -89,7 +89,7 @@
       <div class="error-message">{{errors.currentUtensil}}</div>
       <br/>
 
-      <button ng-click="newStep()" class="button button-block button-positive">Next</button>
+      <button ng-click="newStep()" class="button button-block button-assertive">Next</button>
       <br/>
     </div>
 
@@ -119,7 +119,7 @@
       <br/><br/>
       <button ng-click="showPic()" class="button button-block icon-left ion-camera button-assertive">Add picture</button>
         <div ng-show="pic" class="stepPic">
-          <picture-upload uploaded-picture="currentStep.picture" callback="setPicture" getPictureUrl="getPicture"></picture-upload>
+          <picture-upload uploaded-picture="currentStep.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
         </div>
       <br/><br/>
       <button ng-click="stepBack()" class="button icon-left ion-reply button-assertive">Step back</button>
@@ -139,9 +139,9 @@
       <i class="icon ion-camera camera"></i>
       <p class="last-step-picture">Please select the main picture for your recipe</p>
       <br/>
-        <picture-upload uploaded-picture="finalPicture" callback="setPicture"></picture-upload>
+        <picture-upload uploaded-picture="finalPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
       <br/>
-      <button ng-show="finalPicture" ng-click="finishRecipeAll()" ng-disabled="dataLoading" class="button button-block button-positive save-all">Save All</button>
+      <button ng-show="finalPicture" ng-click="finishRecipeAll()" ng-disabled="dataLoading" class="button button-block button-assertive save-all">Save All</button>
       <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
       <br/>
     </div>

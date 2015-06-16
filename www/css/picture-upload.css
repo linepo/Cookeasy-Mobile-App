@@ -1,6 +1,15 @@
 /* about the entire page */
 .picture-upload {
 }
+/* BUTTONS */
+.picture-upload .button.button-block {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+  vertical-align:middle;
+  width: 95%;
+  margin: 0px auto;
+  box-shadow: 2px 2px 2px grey;
+}
 
 /*----------------------------------------------------------------*/
 /*---------------------------ADD PICTURE--------------------------*/

@@ -3,8 +3,8 @@ angular.module('starter.controllers')
   function($scope, $stateParams, RecipeService, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer) {
 
   $scope.errors = {};
-
   $scope.displayInfo = true;
+  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/recipe/pictures/upload/" + $stateParams.id;
 
   $scope.recipe = {};
   RecipeService.get($stateParams.id).then(function(recipe){
@@ -26,14 +26,14 @@ angular.module('starter.controllers')
   };
 
   // ---------------------slide box
-/*
+
     $ionicModal.fromTemplateUrl('image-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
       $scope.modal = modal;
     });
-*/
+
     $scope.openModal = function() {
       $ionicSlideBoxDelegate.slide(0);
       $scope.modal.show();
@@ -119,6 +119,41 @@ angular.module('starter.controllers')
     }
   };
 
+  //When click on End Recipe button -> display end page
+  $scope.endRecipe = function(){
+    $scope.displayStep = false;
+    $scope.final = true;
+    $scope.finalone = true;
+  };
+
+  //When click on Recipe button -> display first page with recipe info
+  $scope.back = function(){
+    // Go to recipe info page
+    $scope.final = false;
+    $scope.finalone = false;
+    $scope.finaltwo = false;
+    $scope.displayStep = false;
+    $scope.displayInfo = true;
+  };
+
+  //When click on Search button -> display recipe/search
+  $scope.new = function(){
+    // Go to search recipe page
+    $state.go('searchRecipe');
+  };
+
+  // ---------------------take/import picture
+  $scope.setPicture = function(picture){
+    $scope.uploadedPicture = picture;
+  };
+
+  $scope.finishDisplay = function(){
+    $scope.finalone = false;
+    $scope.finaltwo = true;
+    alert("finish display function");
+  }
+
+  // ---------------------comment part
   // Events on marking recipe
   $scope.tapMark = function(add,index){
     if(add){
@@ -128,83 +163,24 @@ angular.module('starter.controllers')
     }
   };
 
-  //When click on End Recipe button -> display end page
-  $scope.endRecipe = function(){
-
-    $scope.displayStep = false;
-    $scope.final = true;
-
-  };
-
-  // ---------------------take/import picture
-
-  $scope.importFinalPicture = function(){
-
-  }
-
-  $scope.takeFinalPicture = function(){
-    var options = {
-      quality: 50,
-      destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
-      encodingType: 0     // 0=JPG 1=PNG
-    }
-    navigator.camera.getPicture(onSuccess,onFail,options).then(function(imageURI) {
-      console.log(imageURI);
-    }, function(err) {
-      console.err(err);
-    });
-  }
-
-  var onSuccess = function(fileUri) {
-    $scope.$apply();
-    var options = new FileUploadOptions();
-    options.fileName = fileUri.substr(fileUri.lastIndexOf('/')+1);
-    options.mimeType = "image/jpeg";
-    options.chunkedMode = false;
-    var ft = new FileTransfer();
-    // ft.onprogress = function(progressEvent){
-    //   if(progressEvent.lengthComputable){
-    //     $scope.test = progressEvent.loaded / progressEvent.total;
-    //   } else {
-    //     $scope.test = 'pppp';
-    //   }
-    // }
-    $cordovaFileTransfer.upload("https://mysterious-eyrie-9135.herokuapp.com/recipe/pictures/upload/" + $scope.recipe._id, fileUri, options);
-    function uploadSuccess(r){
-      $scope.test = "t - " + r;
-    }
-    function uploadError(error) {
-      $scope.test = error;
-    }
-  };
-
-  var onFail = function(e) {
-    console.log("On fail " + e);
-  }
-
-  // ------------------------------
-
   function checkCommentInfo(){
     delete $scope.errors.comment;
     // Check comment textarea
-    if(typeof $scope.mycomment === 'undefined' || $scope.mycomment == ''){
+    if(!$scope.mycomment){
       $scope.errors.comment = 'Comment should not be empty.';
-    } else if($scope.mycomment.length < 10){
-      $scope.errors.comment = 'Comment should be more developped.';
+    } else if(typeof $scope.mycomment !== "string" || $scope.mycomment.length < 10){
+      $scope.errors.comment = 'Comment should be at least 10 characters.';
     }
   }
 
   $scope.addMyComment = function(){
 
     var comment = {};
-
     comment.message = $scope.mycomment;
     checkCommentInfo();
     if($scope.errors.comment){
       return;
     }
-
     if($scope.mark !== 0){
       comment.mark = $scope.mark;
     }
@@ -212,11 +188,9 @@ angular.module('starter.controllers')
     RecipeService.createComment($scope.recipe._id,comment).then(function(comment){
       //add comment in the list of comments
       $scope.recipe.comments.unshift(comment);
-
       $scope.mycomment = '';
       $scope.mark = 0;
     });
-
   };
 
 }]);

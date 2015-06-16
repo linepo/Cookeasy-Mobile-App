@@ -43,7 +43,7 @@ angular.module('starter.controllers')
       options.chunkedMode = false;
       options.headers = {'Authorization': 'Bearer ' + $window.localStorage.token};
 
-      $cordovaFileTransfer.upload("https://mysterious-eyrie-9135.herokuapp.com/picture/upload", fileUri, options).then(win, fail, progress);
+      $cordovaFileTransfer.upload($scope.targetUrl, fileUri, options).then(win, fail, progress);
 
       function win (res){
         var json = JSON.parse(res.response);
@@ -52,6 +52,7 @@ angular.module('starter.controllers')
       }
       function fail (err){
         alert("Error: "+err);
+        //alert(JSON.stringify(err));
       }
       function progress (progress){
         $scope.uploadProgress = (progress.loaded / progress.total) * 100;

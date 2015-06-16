@@ -6,7 +6,6 @@ describe('Controllers - CreateRecipeCtrl', function(){
   var scope,
   CreateRecipeCtrl,
   mockRecipeService,
-  mockUploadPicture,
   state,
   recipe,
   pic;
@@ -23,19 +22,13 @@ describe('Controllers - CreateRecipeCtrl', function(){
       })
     };
 
-    // Fake upload picture service
-    mockUploadPicture = {
-      setPicture: jasmine.createSpy("setPicture")
-    };
-
     scope = $rootScope.$new();
     // no Providers here
 
     CreateRecipeCtrl = $controller('CreateRecipeCtrl', {
       $scope: scope,
       $state: state,
-      RecipeService: mockRecipeService,
-      UploadPicture: mockUploadPicture
+      RecipeService: mockRecipeService
     });
   }));
 
@@ -52,10 +45,10 @@ describe('Controllers - CreateRecipeCtrl', function(){
       expect(scope.currentUtensil).toEqual('');
       expect(scope.steps).toEqual([]);
       expect(scope.currentStep).toEqual({});
-      expect(scope.finalPicture).toEqual({});
       expect(scope.createRecipeInfo).toBe(true);
       expect(scope.createStep).toBe(false);
       expect(scope.finishStep).toBe(false);
+      expect(scope.uploadPictureUrl).toEqual("https://mysterious-eyrie-9135.herokuapp.com/picture/upload");
     });
 
     it('course and difficulty should be choosen among the list', function(){
@@ -365,7 +358,6 @@ describe('Controllers - CreateRecipeCtrl', function(){
       picture = {url: "http://blabla.com/12.jpg",thumbUrl: "http://blabla.com/12.jpg"};
       scope.setPicture(picture);
       expect(scope.finalPicture).toEqual(picture);
-      expect(scope.save).toBe(true);
 
       scope.finishStep = false;
       scope.createStep = true;
@@ -384,7 +376,6 @@ describe('Controllers - CreateRecipeCtrl', function(){
       expect(scope.createRecipeInfo).toBe(false);
       expect(scope.createStep).toBe(false);
       expect(scope.finishStep).toBe(true);
-      expect(scope.save).toBe(false);
     });
 
     it('possibility to go back when on last page', function(){

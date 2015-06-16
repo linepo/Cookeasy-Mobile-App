@@ -24,7 +24,7 @@
     <br/>
 
     <div class="utensils-beaker">
-      <button ng-click="setUtensils()" class="button button-block icon-center ion-beaker">  Utensils
+      <button ng-click="setUtensils()" ng-if="utensil" class="button button-block icon-center ion-beaker">  Utensils
         <div class="icon" ng-class="{'ion-arrow-down-b': !showUtensil, 'ion-arrow-up-b': showUtensil}"></div>
       </button>
       <div ng-show="showUtensil" class="item" ng-repeat="utensil in recipe.utensils">
@@ -44,7 +44,7 @@
           <div class="icon" ng-class="{'ion-arrow-down-b': !showStep, 'ion-arrow-up-b': showStep}"></div>
         </button>
         <div ng-show="showStep" class="item" ng-repeat="step in recipe.steps">
-          {{step.action}}
+          {{step.number}} | {{step.action}}
         </div>
       </div>
 
@@ -52,7 +52,7 @@
       <button ng-click="stepForward()" class="button button-block button-assertive start">Start Recipe</button>
       <br/>
 
-      <div class="previous-recipe-pictures">
+      <div class="previous-recipe-pictures" ng-if="recipe.pictures">
         <p>Pictures of this recipe by other users:</p>
         <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures track by $index" ng-src="{{picture.miniThumbUrlSquare}}"/>
       </div>
@@ -120,11 +120,15 @@
         <button ng-click="stepBack()" class="button ion-reply button-assertive"></button>
       </div>
       <div class="picture-step">
-        <img class="recipe-step-picture" ng-src="{{currentStep.picture.thumbUrlLarge}}" alt="Recipe Step Photo" />
+        <img class="recipe-step-picture" ng-repeat="step in recipe.steps" ng-show="step.number == currentStep.number" ng-src="{{step.picture.thumbUrlLarge}}" alt="Recipe Step Photo" />
       </div>
       <div class="button-next">
         <button ng-click="stepForward()" class="button ion-forward button-assertive"></button>
       </div>
+    </div>
+
+    <div class="step-timer" ng-if="currentStep.time">
+      Time : {{currentStep.time}} mins
     </div>
 
     <br/><br/>
@@ -134,18 +138,32 @@
 
   <div ng-show="final" class="final-page">
 
-    <div class="header-final">
+    <div class="backOrNew">
+      <button ng-click="back()" class="button icon-left ion-reply button-assertive button-clear button-back">{{recipe.name}}</button>
+      <button ng-click="new()" class="button icon-right ion-forward button-assertive button-clear button-new">Search</button>
+    </div>
+
+    <div ng-show="finalone" class="header-final">
       <h1>Congratulations !</h1>
       <i class="icon ion-camera camera-final"></i>
       <p>Share a picture of your result with the community ;)</p>
     </div>
 
-    <div class="picture-final">
-      <button ng-click="importFinalPicture()" class="button button-block button-assertive import-final">Import a picture</button>
-      <button ng-click="takeFinalPicture()" class="button button-block button-assertive take-final">Take a picture</button>
+    <div ng-show="finalone" class="picture-final">
+      <picture-upload uploaded-picture="uploadedPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+      <button ng-if="uploadedPicture" ng-click="finishDisplay()" ng-disabled="dataLoading" class="button button-block button-assertive save">Save</button>
+      <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
+      display pictures of other users here
     </div>
     <br/>
-{{test}}
+
+    <div ng-show="finaltwo" class="header-final">
+      <h1>Thank you a lot for sharing !</h1>
+      <i class="icon ion-camera camera-final"></i>
+      <p></p>
+      display pictures of other users here + my picture too
+    </div>
+
     <div class="comment-final">
       <div class="add-mark">
         Give a mark: <i ng-repeat="t in [] | range: mark" class="icon ion-android-star" on-tap="tapMark(false,$index)"/>
@@ -175,6 +193,7 @@
         {{comment.message}}
       </div>
     </div>
+    <br/>
 
   </div>
 

@@ -5,7 +5,7 @@ angular.module('starter.directives', ['starter.controllers'])
     templateUrl: 'templates/picture-upload.html',
     scope: {
       callback: "=",
-      getPictureUrl: "=",
+      targetUrl: "=",
       uploadedPicture: '='
     }
   };

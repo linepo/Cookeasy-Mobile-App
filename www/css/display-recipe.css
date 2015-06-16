@@ -195,6 +195,11 @@ p.info {
   border: 1px solid #A88;
 }
 
+/* about the timer of the step */
+.display-recipe .step-timer{
+  text-align: center;
+}
+
 /* end display recipe button */
 .display-recipe .end {
   text-align: center;
@@ -209,6 +214,29 @@ p.info {
 
 /*----------------------------------------------------------------*/
 /*---------------------FINAL DISPLAY PAGE-------------------------*/
+.display-recipe .backOrNew{
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.display-recipe .button.icon-left.ion-reply.button-assertive.button-clear.button-back {
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  margin-top: 0px;
+  width: 48%;
+  text-align: left;
+  color: #800000;
+  display: inline-block;
+}
+.display-recipe .button.icon-right.ion-forward.button-assertive.button-clear.button-new {
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  margin-top: 0px;
+  width: 48%;
+  text-align: right;
+  color: #800000;
+  display: inline-block;
+}
+
 /* about the header-final part */
 .display-recipe .header-final{
   text-align: center;
@@ -216,7 +244,7 @@ p.info {
 .display-recipe .header-final h1{
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 30px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 .display-recipe .camera-final{
   font-size: 60px;
@@ -228,7 +256,7 @@ p.info {
 
 /* about the picture-final part */
 .display-recipe .picture-final{
-
+  text-align: center;
 }
 .display-recipe .import-final,
 .display-recipe .take-final{

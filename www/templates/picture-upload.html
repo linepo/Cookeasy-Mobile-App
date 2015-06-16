@@ -3,10 +3,10 @@
 
     <div>
       <div ng-show="notLoadedPic" class="import">
-        <button ng-click="importPicture()" class="button button-block button-positive import">Import a picture</button>
+        <button ng-click="importPicture()" class="button button-block button-assertive import">Import a picture</button>
       </div>
       <div ng-show="notLoadedPic" class="take">
-        <button ng-click="takePicture()" class="button button-block button-positive take">Take a picture</button>
+        <button ng-click="takePicture()" class="button button-block button-assertive take">Take a picture</button>
       </div>
       <div ng-show="loadedPic" ng-if="uploadProgress" class="progress">
         <progress max="100" value="{{uploadProgress}}"></progress>
@@ -15,7 +15,7 @@
         <img ng-src="{{uploadedPicture.thumbUrlLarge}}"/>
       </div>
       <div ng-show="loadedPic" class="upload">
-        <button ng-click="uploadPicture()" class="button button-block button-positive upload">Upload the picture</button>
+        <button ng-click="uploadPicture()" class="button button-block button-assertive upload">Upload the picture</button>
       </div>
     </div>
 

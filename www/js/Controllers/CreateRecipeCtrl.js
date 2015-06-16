@@ -6,6 +6,7 @@ angular.module('starter.controllers')
   $scope.finishStep = false;
   $scope.createStep = false;
   $scope.errors = {};
+  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/picture/upload";
 
   //List of different courses
   $scope.courses = [{name: 'Starter', value: 1},{name: 'Main course', value: 2},
@@ -210,7 +211,6 @@ angular.module('starter.controllers')
       $scope.currentStep = {number: (stepNb+1)};
     }
 
-    // UploadPicture.setPicture($scope.currentStep.picture);
     $scope.timer = false;
   }
 
@@ -235,7 +235,6 @@ angular.module('starter.controllers')
       $scope.currentStep = {};
     }
 
-    // UploadPicture.setPicture($scope.currentStep.picture);
     $scope.timer = false;
   };
 

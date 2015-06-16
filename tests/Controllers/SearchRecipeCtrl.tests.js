@@ -19,7 +19,7 @@ describe('Controllers - SearchRecipeCtrl', function(){
     };
 
     scope = $rootScope.$new();
-    // Providers (any here)
+    // Providers
     state = jasmine.createSpyObj('state',['go']);
 
     SearchRecipeCtrl = $controller('SearchRecipeCtrl', {

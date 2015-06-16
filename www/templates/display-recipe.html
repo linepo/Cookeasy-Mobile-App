@@ -54,11 +54,10 @@
 
       <div class="previous-recipe-pictures" ng-if="recipe.pictures">
         <p>Pictures of this recipe by other users:</p>
-        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures track by $index" ng-src="{{picture.miniThumbUrlSquare}}"/>
+        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.miniThumbUrlSquare}}"/>
       </div>
       <br/>
-
-       <script id="image-modal.html" type="text/ng-template">
+      <script id="image-modal.html" type="text/ng-template">
         <div class="modal image-modal transparent" ng-click="closeModal()">
           <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
             <ion-slide ng-repeat="image in recipe.pictures">
@@ -80,7 +79,8 @@
             <textarea ng-model="$parent.mycomment" placeholder="Type your comment here..."></textarea>
           </label>
           <div class="error-message">{{errors.comment}}</div>
-          <button ng-click="addMyComment()" class="button button-block button-assertive add-comment">Add comment</button>
+          <button ng-click="addMyComment()" ng-disabled="dataLoading" class="button button-block button-assertive add-comment">Add comment</button>
+          <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
         </div>
 
         <div class="list card all-comments" ng-repeat="comment in recipe.comments">
@@ -143,26 +143,38 @@
       <button ng-click="new()" class="button icon-right ion-forward button-assertive button-clear button-new">Search</button>
     </div>
 
-    <div ng-show="finalone" class="header-final">
+    <div ng-if="!uploadedPicture" class="header-final">
       <h1>Congratulations !</h1>
       <i class="icon ion-camera camera-final"></i>
       <p>Share a picture of your result with the community ;)</p>
     </div>
-
-    <div ng-show="finalone" class="picture-final">
-      <picture-upload uploaded-picture="uploadedPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
-      <button ng-if="uploadedPicture" ng-click="finishDisplay()" ng-disabled="dataLoading" class="button button-block button-assertive save">Save</button>
-      <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
-      display pictures of other users here
-    </div>
-    <br/>
-
-    <div ng-show="finaltwo" class="header-final">
+    <div ng-if="uploadedPicture" class="header-final">
       <h1>Thank you a lot for sharing !</h1>
       <i class="icon ion-camera camera-final"></i>
       <p></p>
-      display pictures of other users here + my picture too
     </div>
+    <br/>
+
+    <div class="picture-final">
+      <picture-upload uploaded-picture="uploadedPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+    </div>
+    <br/>
+
+    <div class="previous-recipe-pictures" ng-if="recipe.pictures">
+      <p>Pictures of this recipe by users:</p>
+      <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.miniThumbUrlSquare}}"/>
+    </div>
+    <br/>
+     <script id="image-modal.html" type="text/ng-template">
+      <div class="modal image-modal transparent" ng-click="closeModal()">
+        <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
+          <ion-slide ng-repeat="image in recipe.pictures">
+            <img ng-src="{{image.url}}" class="fullscreen-image" />
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+    </script>
+    <br/>
 
     <div class="comment-final">
       <div class="add-mark">
@@ -174,7 +186,8 @@
         <textarea ng-model="$parent.mycomment" placeholder="Type your comment here..."></textarea>
       </label>
       <div class="error-message">{{errors.comment}}</div>
-      <button ng-click="addMyComment()" class="button button-block button-assertive add-comment">Add comment</button>
+      <button ng-click="addMyComment()" ng-disabled="dataLoading" class="button button-block button-assertive add-comment">Add comment</button>
+      <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
     </div>
 
     <div class="list card all-comments" ng-repeat="comment in recipe.comments">

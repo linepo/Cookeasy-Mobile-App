@@ -7,4 +7,18 @@ angular.module('starter.filters', [])
         val.push(i);
       return val;
     };
-  });
+})
+
+.filter('orderObjectBy', function() {
+return function(items, field, order) {
+var filtered = [];
+      angular.forEach(items, function(item) {
+        filtered.push(item);
+      });
+      filtered.sort(function (a, b) {
+return (a[field] > b[field] ? 1 : -1);
+      });
+if(order === -1) filtered.reverse();
+return filtered;
+    };
+});

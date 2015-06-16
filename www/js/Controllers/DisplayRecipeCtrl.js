@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$stateParams', 'RecipeService', '$ionicModal', '$ionicSlideBoxDelegate','$http', '$cordovaFileTransfer',
-  function($scope, $stateParams, RecipeService, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$filter', '$ionicModal', '$ionicSlideBoxDelegate','$http', '$cordovaFileTransfer', 'RecipeService',
+  function($scope, $state, $stateParams, $filter, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer, RecipeService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
@@ -9,6 +9,7 @@ angular.module('starter.controllers')
   $scope.recipe = {};
   RecipeService.get($stateParams.id).then(function(recipe){
     $scope.recipe = recipe;
+    $filter('orderObjectBy')($scope.recipe.pictures,'createdOn',-1);
   });
 
   // Current step
@@ -33,21 +34,18 @@ angular.module('starter.controllers')
     }).then(function(modal) {
       $scope.modal = modal;
     });
-
     $scope.openModal = function() {
-      $ionicSlideBoxDelegate.slide(0);
+      //$ionicSlideBoxDelegate.slide(0);
       $scope.modal.show();
+      $ionicSlideBoxDelegate.update();
     };
-
     $scope.closeModal = function() {
       $scope.modal.hide();
     };
-
     // Cleanup the modal when we're done with it!
     $scope.$on('$destroy', function() {
       $scope.modal.remove();
     });
-
     // Execute action on hide modal
     $scope.$on('modal.hide', function() {
       // Execute action
@@ -59,21 +57,17 @@ angular.module('starter.controllers')
     $scope.$on('modal.shown', function() {
       console.log('Modal is shown!');
     });
-
     // Call this functions if you need to manually control the slides
     $scope.next = function() {
       $ionicSlideBoxDelegate.next();
     };
-
     $scope.previous = function() {
       $ionicSlideBoxDelegate.previous();
     };
-
   	$scope.goToSlide = function(index) {
       $scope.modal.show();
       $ionicSlideBoxDelegate.slide(index);
     }
-
     // Called each time the slide changes
     $scope.slideChanged = function(index) {
       $scope.slideIndex = index;
@@ -123,15 +117,12 @@ angular.module('starter.controllers')
   $scope.endRecipe = function(){
     $scope.displayStep = false;
     $scope.final = true;
-    $scope.finalone = true;
   };
 
   //When click on Recipe button -> display first page with recipe info
   $scope.back = function(){
     // Go to recipe info page
     $scope.final = false;
-    $scope.finalone = false;
-    $scope.finaltwo = false;
     $scope.displayStep = false;
     $scope.displayInfo = true;
   };
@@ -145,13 +136,8 @@ angular.module('starter.controllers')
   // ---------------------take/import picture
   $scope.setPicture = function(picture){
     $scope.uploadedPicture = picture;
+    $scope.recipe.pictures.unshift(picture);
   };
-
-  $scope.finishDisplay = function(){
-    $scope.finalone = false;
-    $scope.finaltwo = true;
-    alert("finish display function");
-  }
 
   // ---------------------comment part
   // Events on marking recipe
@@ -174,7 +160,7 @@ angular.module('starter.controllers')
   }
 
   $scope.addMyComment = function(){
-
+    $scope.dataLoading = true;
     var comment = {};
     comment.message = $scope.mycomment;
     checkCommentInfo();
@@ -186,6 +172,7 @@ angular.module('starter.controllers')
     }
 
     RecipeService.createComment($scope.recipe._id,comment).then(function(comment){
+      $scope.dataLoading = false;
       //add comment in the list of comments
       $scope.recipe.comments.unshift(comment);
       $scope.mycomment = '';

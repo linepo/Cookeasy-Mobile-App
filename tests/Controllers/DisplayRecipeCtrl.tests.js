@@ -3,6 +3,7 @@ describe('Controllers - DisplayRecipeCtrl', function(){
   beforeEach(module('starter.controllers'));
 
   var scope,
+  state,
   DisplayRecipeCtrl,
   mockRecipeService,
   stateParams = {id: '12345'};
@@ -111,9 +112,11 @@ describe('Controllers - DisplayRecipeCtrl', function(){
     ionicModal = jasmine.createSpyObj('ionicModal',['fromTemplateUrl']);
     ionicSlideBoxDelegate = jasmine.createSpyObj('ionicSlideBoxDelegate',['next','previous','slide']);
     cordovaFileTransfer = jasmine.createSpyObj('cordovaFileTransfer',['upload']);
+    state = jasmine.createSpyObj('state',['go']);
 
     DisplayRecipeCtrl = $controller('DisplayRecipeCtrl', {
       $scope: scope,
+      $state: state,
       $stateParams: stateParams,
       $ionicModal: ionicModal,
       $ionicSlideBoxDelegate: ionicSlideBoxDelegate,

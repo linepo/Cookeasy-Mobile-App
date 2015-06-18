@@ -1,10 +1,12 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$filter', '$ionicModal', '$ionicSlideBoxDelegate','$http', '$cordovaFileTransfer', 'RecipeService',
-  function($scope, $state, $stateParams, $filter, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer, RecipeService) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate','$http', '$cordovaFileTransfer', 'RecipeService',
+  function($scope, $state, $stateParams, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer, RecipeService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
   $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/recipe/pictures/upload/" + $stateParams.id;
+  // Seconds passed for timer
+  $scope.timerSecondsPassed = 0;
 
   $scope.recipe = {};
   RecipeService.get($stateParams.id).then(function(recipe){
@@ -81,6 +83,8 @@ angular.module('starter.controllers')
 
     $scope.displayInfo = false;
     $scope.endRecipeButton = false;
+    // Reset timer
+    $scope.timerSecondsPassed = 0;
 
     // Get current step number
     var stepNb = $scope.currentStep.number || 0;
@@ -101,6 +105,8 @@ angular.module('starter.controllers')
   $scope.stepBack = function(){
 
     $scope.endRecipeButton = false;
+    // Reset timer
+    $scope.timerSecondsPassed = 0;
 
     // Get current step number
     var stepNb = $scope.currentStep.number;
@@ -179,5 +185,35 @@ angular.module('starter.controllers')
       $scope.mark = 0;
     });
   };
+
+  // ---------------------chronometer
+
+  var timer;
+  // Pause timer
+  $scope.timerPause = function(){
+    $scope.timerRunning = false;
+    $timeout.cancel(timer);
+  }
+  // Start timer
+  $scope.timerStart = function(){
+    timer = $timeout($scope.timerTick,1000);
+    $scope.timerRunning = true;
+  };
+  // Stop timer
+  $scope.timerStop = function(){
+    $scope.timerRunning = false;
+    $timeout.cancel(timer);
+    $scope.timerSecondsPassed = 0;
+  };
+  // Update timer each seconds
+  $scope.timerTick = function(){
+    $scope.timerSecondsPassed++;
+    if($scope.timerSecondsPassed == $scope.currentStep.time*60){
+      return $scope.timerStop();
+    }
+    timer = $timeout($scope.timerTick,1000);
+  };
+
+  // ------------------------------
 
 }]);

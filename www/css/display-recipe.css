@@ -211,6 +211,30 @@ p.info {
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-weight: bold;
 }
+/*----------------------------------------------------------------*/
+/*--------------------------CHRONOMETER -----------------------------*/
+.display-recipe .timer{
+  text-align: center;
+  width: 30%;
+  margin: 0px auto;
+  display: inline-block;
+}
+.display-recipe .all-timer{
+  display: inline-block;
+}
+.display-recipe .counter{
+  border: 2px solid black;
+  border-radius: 60px;
+  height: 100%;
+}
+.display-recipe .play,
+.display-recipe .pause,
+.display-recipe .stop{
+  background-color: #800000;
+  border-color: #800000;
+  border-radius: 50px;
+  width: 40%;
+}
 
 /*----------------------------------------------------------------*/
 /*---------------------FINAL DISPLAY PAGE-------------------------*/

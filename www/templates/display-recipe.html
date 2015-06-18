@@ -130,6 +130,24 @@
     <div class="step-timer" ng-if="currentStep.time">
       Time : {{currentStep.time}} mins
     </div>
+    <br/><br/>
+
+    <!-- <div class="timer"> -->
+      <div class="timer" ng-show="currentStep.time">
+        <!-- <div class="all-timer"> -->
+            <!-- <div class="play-button"> -->
+            <button class="play" ng-hide="timerRunning" ng-click="timerStart()"><i class="icon ion-play"></i></button>
+            <!-- </div> -->
+            <div class="counter">
+            {{((currentStep.time*60)-timerSecondsPassed) | secondsToDateTime | date:'HH:mm:ss' }}
+            </div>
+            <!-- <div class="pause-stop-buttons"> -->
+            <button class="pause" ng-show="timerRunning" ng-click="timerPause()"><i class="icon ion-pause"></i></button>
+            <button class="stop" ng-show="timerRunning" ng-click="timerStop()"><i class="icon ion-stop"></i></button>
+            <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    <!-- </div> -->
 
     <br/><br/>
     <button ng-show="endRecipeButton" ng-click="endRecipe()" class="button button-block button-assertive end">End</button>

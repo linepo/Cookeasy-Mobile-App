@@ -65,23 +65,13 @@ angular.module('starter.services', [])
     return deferred.promise;
   };
 
-  services.createComment = function (id,comment){
+  services.getTrends = function(){
     var deferred = $q.defer();
-    var req = {
-      method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipe/comment/add/' + id,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      data: comment
-    };
-
-    $http(req).success(function(data){
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipe/getTrends').success(function(data){
       if(data.error){
         deferred.reject(data.error);
       } else {
-        deferred.resolve(data.comment);
+        deferred.resolve(data.recipes);
       }
     }).error(function(error){
       deferred.reject(error);
@@ -107,6 +97,31 @@ angular.module('starter.services', [])
         deferred.reject(data.error);
       } else {
         deferred.resolve(data.recipes);
+      }
+    }).error(function(error){
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
+  };
+
+  services.createComment = function (id,comment){
+    var deferred = $q.defer();
+    var req = {
+      method: 'POST',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipe/comment/add/' + id,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: comment
+    };
+
+    $http(req).success(function(data){
+      if(data.error){
+        deferred.reject(data.error);
+      } else {
+        deferred.resolve(data.comment);
       }
     }).error(function(error){
       deferred.reject(error);

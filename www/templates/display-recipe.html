@@ -1,7 +1,7 @@
 <ion-view>
   <ion-content class="display-recipe">
 
-  <div ng-show="displayInfo">
+  <div ng-show="displayInfo" class="ng-view" autoscroll="true">
     <div class="recipe-name">
       <h1>{{recipe.name}}</h1>
     </div>
@@ -103,7 +103,7 @@
       </div>
   </div>
 
-  <div ng-show="displayStep">
+  <div ng-show="displayStep" class="ng-view" autoscroll="true">
 
     <div class="header-step">
         <h1>Step {{currentStep.number}}</h1>

@@ -6,10 +6,18 @@ angular.module('starter.controllers')
 
   $scope.searchRecipe = function(){
     var mysearch = $scope.mySearchRecipe;
-    RecipeService.getSearchRecipe(mysearch).then(function(res){
-      $scope.recipes = res;
-      console.log($scope.recipes);
-    });
+    
+    if($scope.mySearchRecipe.length){
+      RecipeService.getSearchRecipe(mysearch).then(function(res){
+        $scope.recipes = res;
+        console.log($scope.recipes);
+      });
+    } else {
+      RecipeService.getTrends().then(function(res){
+        $scope.recipes = res;
+        console.log($scope.recipes);
+      });
+    }
   };
 
   $scope.displayRecipe = function(id){

@@ -4,12 +4,17 @@ describe('Controllers - DisplayRecipeCtrl', function(){
 
   var scope,
   state,
+  http,
+  filter,
+  timeout,
   DisplayRecipeCtrl,
   mockRecipeService,
   stateParams = {id: '12345'};
 
   beforeEach(inject(function($rootScope, $controller, $q) {
 
+    // Initiate modal
+    //var modal;
     // Recipe sample
     var recipe = {
       "_id": {
@@ -110,17 +115,23 @@ describe('Controllers - DisplayRecipeCtrl', function(){
     scope = $rootScope.$new();
     // Providers
     ionicModal = jasmine.createSpyObj('ionicModal',['fromTemplateUrl']);
-    ionicSlideBoxDelegate = jasmine.createSpyObj('ionicSlideBoxDelegate',['next','previous','slide']);
+    ionicSlideBoxDelegate = jasmine.createSpyObj('ionicSlideBoxDelegate',['next','previous','slide', 'update']);
     cordovaFileTransfer = jasmine.createSpyObj('cordovaFileTransfer',['upload']);
     state = jasmine.createSpyObj('state',['go']);
+    timeout = jasmine.createSpyObj('timeout',['cancel']);
+    //filter = jasmine.createSpyObj('filter',['orderObjectBy']);
 
     DisplayRecipeCtrl = $controller('DisplayRecipeCtrl', {
       $scope: scope,
       $state: state,
       $stateParams: stateParams,
+      $http: http,
+      $filter: filter,
+      $timeout: timeout,
       $ionicModal: ionicModal,
       $ionicSlideBoxDelegate: ionicSlideBoxDelegate,
       $cordovaFileTransfer: cordovaFileTransfer,
+      $http: http,
       RecipeService: mockRecipeService
     });
 

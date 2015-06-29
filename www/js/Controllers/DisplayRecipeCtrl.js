@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate','$http', '$cordovaFileTransfer', 'RecipeService',
-  function($scope, $state, $stateParams, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $http, $cordovaFileTransfer, RecipeService) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService',
+  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
@@ -29,7 +29,7 @@ angular.module('starter.controllers')
   };
 
   // ---------------------slide box
-
+/*
     $ionicModal.fromTemplateUrl('image-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -74,7 +74,7 @@ angular.module('starter.controllers')
     $scope.slideChanged = function(index) {
       $scope.slideIndex = index;
     };
-
+*/
   // ------------------------------
 
   //When click on Start Recipe button -> display recipe step by step, begining with the first one

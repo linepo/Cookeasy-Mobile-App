@@ -104,10 +104,26 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       }}
     })
 
-    .state('myProfile', {
-      url: "/my-profile",
-      controller: 'MyProfileCtrl',
-      templateUrl: "templates/my-profile.html",
+    .state('profile', {
+      url: "/profile",
+      controller: 'ProfileCtrl',
+      templateUrl: "templates/profile.html",
+      resolve: { promise: function($q,$state,Header){
+        var deferred = $q.defer();
+        deferred.resolve();
+        if(localStorage.token){
+          Header.show();
+        } else {
+          $state.go('login');
+        }
+        return deferred.promise;
+      }}
+    })
+
+    .state('profileEdit', {
+      url: "/profile-edit",
+      controller: 'ProfileEditCtrl',
+      templateUrl: "templates/profile-edit.html",
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();

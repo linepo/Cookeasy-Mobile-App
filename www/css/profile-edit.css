@@ -1,0 +1,119 @@
+/* about the entire page */
+.profile-edit {
+  text-align: left;
+  padding-left: 5px;
+  margin-top: 50px;
+  font-size: 16px;
+}
+/* about the button edit all profile */
+.profile-edit .save-profile {
+  text-align: right;
+}
+/* about the profile photo */
+.profile-edit .profile-photo {
+  text-align: center;
+}
+.profile-edit .profile-photo img {
+  width: 40%;
+}
+
+/* about the profile username */
+.profile-edit .username-modif {
+  text-align: center;
+}
+.profile-edit .username {
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+.profile-edit .modif-username {
+  display: inline-block;
+  font-size: 17px;
+  color: #0066FF;
+}
+
+/* about the profile place */
+.profile-edit .where-modif {
+  text-align: center;
+}
+.profile-edit .where {
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 17px;
+  margin-top: 8px;
+  display: inline-block;
+}
+.profile-edit .modif-where {
+  display: inline-block;
+  font-size: 17px;
+  color: #0066FF;
+}
+
+/* about the row info */
+.profile-edit .row {
+  width: 98%;
+  text-align: center;
+  margin-top: 20px;
+  border: 2px solid #800000;
+  background-color: #800000;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+/* about the card of personal information */
+.profile-edit .list.info-perso {
+  margin-top: 10px;
+}
+.profile-edit .item.item-icon-left {
+  padding-bottom: 0px;
+  padding-top: 2px;
+  width: 98%;
+  display: inline-block;
+}
+.profile-edit .item-icon-left .icon {
+  left: inherit;
+}
+.profile-edit .icon.ion-person,
+.profile-edit .icon.ion-key,
+.profile-edit .icon.ion-wand {
+  max-height: 50%;
+  padding-top: 19px;
+  left: 10px;
+}
+.profile-edit .name, .password, .date-of-birth, .description {
+  display: inline-block;
+  width: 80%;
+  margin-top: 10px;
+}
+.profile-edit .password {
+  -webkit-text-security: disc;
+  height:20px;
+  -webkit-appearance: textfield;
+  padding: 1px;
+  background-color: white;
+  -webkit-user-select: text;
+  cursor: auto;
+}
+.profile-edit .description {
+  resize: none;
+  padding-left: 15px;
+}
+.profile-edit .description-area {
+  margin-left: 2px;
+  margin-right: 8px;
+  background-color: white;
+}
+.profile-edit .modif-name,
+.profile-edit .modif-pw,
+.profile-edit .modif-dob,
+.profile-edit .modif-description
+{
+  font-size: 17px;
+  text-align: right;
+  display: inline-block;
+  color: #0066FF;
+}

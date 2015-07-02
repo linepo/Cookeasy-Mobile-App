@@ -3,20 +3,26 @@ angular.module('starter.controllers')
   function($scope, $rootScope, $state, RecipeService) {
 
   $scope.recipes = [];
+  $scope.recipesTrends = [];
+
+  init();
+  function init(){
+    RecipeService.getTrends().then(function(res){
+      $scope.recipesTrends = res;
+      $scope.recipes = res;
+    });
+  }
 
   $scope.searchRecipe = function(){
     var mysearch = $scope.mySearchRecipe;
-    
+
     if($scope.mySearchRecipe.length){
       RecipeService.getSearchRecipe(mysearch).then(function(res){
         $scope.recipes = res;
         console.log($scope.recipes);
       });
     } else {
-      RecipeService.getTrends().then(function(res){
-        $scope.recipes = res;
-        console.log($scope.recipes);
-      });
+      $scope.recipes = $scope.recipesTrends;
     }
   };
 

@@ -58,20 +58,11 @@
   width: 98%;
   vertical-align: top;
 }
-.profile .name, .password, .date-of-birth, .description {
+.profile .name, .date-of-birth, .description {
   display: inline-block;
   width: 98%;
   margin-top: 10px;
   margin-bottom: 3px;
-}
-.profile .password {
-  -webkit-text-security: disc;
-  height:20px;
-  -webkit-appearance: textfield;
-  padding: 1px;
-  background-color: white;
-  -webkit-user-select: text;
-  cursor: auto;
 }
 .profile .description {
   resize: none;

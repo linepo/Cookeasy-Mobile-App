@@ -29,11 +29,6 @@
   margin-top: 5px;
   display: inline-block;
 }
-.profile-edit .modif-username {
-  display: inline-block;
-  font-size: 17px;
-  color: #0066FF;
-}
 
 /* about the profile place */
 .profile-edit .where-modif {
@@ -72,31 +67,21 @@
   padding-bottom: 0px;
   padding-top: 2px;
   width: 98%;
-  display: inline-block;
 }
 .profile-edit .item-icon-left .icon {
   left: inherit;
 }
 .profile-edit .icon.ion-person,
-.profile-edit .icon.ion-key,
 .profile-edit .icon.ion-wand {
   max-height: 50%;
   padding-top: 19px;
   left: 10px;
 }
-.profile-edit .name, .password, .date-of-birth, .description {
+.profile-edit .name, .date-of-birth, .description {
   display: inline-block;
   width: 80%;
   margin-top: 10px;
-}
-.profile-edit .password {
-  -webkit-text-security: disc;
-  height:20px;
-  -webkit-appearance: textfield;
-  padding: 1px;
-  background-color: white;
-  -webkit-user-select: text;
-  cursor: auto;
+  margin-bottom: 3px;
 }
 .profile-edit .description {
   resize: none;
@@ -108,7 +93,6 @@
   background-color: white;
 }
 .profile-edit .modif-name,
-.profile-edit .modif-pw,
 .profile-edit .modif-dob,
 .profile-edit .modif-description
 {

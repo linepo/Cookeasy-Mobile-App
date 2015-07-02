@@ -2,19 +2,9 @@ angular.module('starter.services', [])
 
 .factory('Header', function(){
   var displayed = false;
-
-  function show(){
-    displayed = true;
-  }
-
-  function hide(){
-    displayed = false;
-  }
-
-  function isDisplayed () {
-    return displayed;
-  }
-
+  function show(){displayed = true;}
+  function hide(){displayed = false;}
+  function isDisplayed () {return displayed;}
   return {
     show: show,
     hide: hide,
@@ -29,79 +19,53 @@ angular.module('starter.services', [])
     var deferred = $q.defer();
     var req = {
       method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipe/create',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipes',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: recipe
     };
-
-    $http(req).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.id);
-      }
+    $http(req).success(function(recipes){
+      deferred.resolve(recipes.id);
     }).error(function(error){
       deferred.reject(error);
     });
-
     return deferred.promise;
   };
 
   services.get = function(id){
     var deferred = $q.defer();
-    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipe/get/' + id).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.recipe);
-      }
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipes/' + id).success(function(recipes){
+      deferred.resolve(recipes);
     }).error(function(error){
       deferred.reject(error);
     });
-
     return deferred.promise;
   };
 
   services.getTrends = function(){
     var deferred = $q.defer();
-    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipe/getTrends').success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.recipes);
-      }
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipes').success(function(recipes){
+      deferred.resolve(recipes);
     }).error(function(error){
       deferred.reject(error);
     });
-
     return deferred.promise;
   };
 
   services.getSearchRecipe = function(mysearch){
     var deferred = $q.defer();
     var req = {
-      method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipe/search',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      data: {search: mysearch}
+      method: 'GET',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipes',
+      params: {match: mysearch}
     };
-
-    $http(req).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.recipes);
-      }
+    $http(req).success(function(recipes){
+      deferred.resolve(recipes);
     }).error(function(error){
       deferred.reject(error);
     });
-
     return deferred.promise;
   };
 
@@ -109,24 +73,18 @@ angular.module('starter.services', [])
     var deferred = $q.defer();
     var req = {
       method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipe/comment/add/' + id,
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipes/' + id + '/comments',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: comment
     };
-
     $http(req).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.comment);
-      }
+      deferred.resolve(data);
     }).error(function(error){
       deferred.reject(error);
     });
-
     return deferred.promise;
   };
 
@@ -135,6 +93,16 @@ angular.module('starter.services', [])
 
 .factory('UserService', function ($http, $q) {
   var services = {};
+
+  services.getUser = function(username){
+    var deferred = $q.defer();
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/users/' + username).success(function(users){
+      deferred.resolve(users);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
 
   services.login = function (email, password) {
     var deferred = $q.defer();
@@ -147,7 +115,6 @@ angular.module('starter.services', [])
       },
       data: {id: email, password: password }
     };
-
     $http(req).success(function(data){
       if(data.error){
         deferred.reject(data.error);
@@ -158,21 +125,19 @@ angular.module('starter.services', [])
       deferred.reject(error);
     });
     return deferred.promise;
-
-  }
+  };
 
   services.signUp = function (email, password, username) {
     var deferred = $q.defer();
     var req = {
       method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/user/signup',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/users',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: {email: email, password: password, username: username }
     };
-
     $http(req).success(function(data){
       if(data.error){
         deferred.reject(data.error);
@@ -183,7 +148,7 @@ angular.module('starter.services', [])
       deferred.reject(res.error);
     });
     return deferred.promise;
-  }
+  };
 
   return services;
 })
@@ -192,7 +157,6 @@ angular.module('starter.services', [])
    var auth = {
      isLogged: false
    };
-
    return auth;
 })
 
@@ -205,11 +169,9 @@ angular.module('starter.services', [])
         }
         return config;
       },
-
       requestError: function(rejection) {
         return $q.reject(rejection);
       },
-
       /* Set Authentication.isAuthenticated to true if 200 received */
       response: function (response) {
         if (response != null && response.status == 200 && $window.localStorage.token && !AuthenticationService.isAuthenticated) {
@@ -221,18 +183,15 @@ angular.module('starter.services', [])
 })
 
 .factory('Camera', function($q) {
-
   return {
     getPicture: function(onSuccess,onFail,options) {
       var deferred = $q.defer();
-
       navigator.camera.getPicture(function(result) {
         deferred.resolve(result);
       }, function(err) {
         deferred.reject(err);
       }, options);
-
       return deferred.promise;
     }
-  }
+  };
 });

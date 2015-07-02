@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService',
-  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService', 'UserService',
+  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService, UserService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
@@ -80,19 +80,15 @@ angular.module('starter.controllers')
   //When click on Start Recipe button -> display recipe step by step, begining with the first one
   //When click on Step forward button -> display next step
   $scope.stepForward = function(){
-
     $scope.displayInfo = false;
     $scope.endRecipeButton = false;
     // Reset timer
     $scope.timerSecondsPassed = 0;
-
     // Get current step number
     var stepNb = $scope.currentStep.number || 0;
-
     if(stepNb == 0){
       $scope.displayStep = true;
     }
-
     //Go to next step
     if(stepNb < ($scope.recipe.steps.length)){
       $scope.currentStep = $scope.recipe.steps[stepNb];
@@ -103,11 +99,9 @@ angular.module('starter.controllers')
 
   //When click on Step back button -> display previous step
   $scope.stepBack = function(){
-
     $scope.endRecipeButton = false;
     // Reset timer
     $scope.timerSecondsPassed = 0;
-
     // Get current step number
     var stepNb = $scope.currentStep.number;
     // Go to previous step
@@ -176,7 +170,6 @@ angular.module('starter.controllers')
     if($scope.mark !== 0){
       comment.mark = $scope.mark;
     }
-
     RecipeService.createComment($scope.recipe._id,comment).then(function(comment){
       $scope.dataLoading = false;
       //add comment in the list of comments
@@ -187,7 +180,6 @@ angular.module('starter.controllers')
   };
 
   // ---------------------chronometer
-
   var timer;
   // Pause timer
   $scope.timerPause = function(){
@@ -214,6 +206,13 @@ angular.module('starter.controllers')
     timer = $timeout($scope.timerTick,1000);
   };
 
-  // ------------------------------
+  // -----------------------profiles
+  $scope.getProfile = function(){
+    $scope.user = {};
+    UserService.getProfile($scope.recipe.author).then(function(user){
+      $scope.user = user;
+      console.log($scope.user);
+    });
+  };
 
 }]);

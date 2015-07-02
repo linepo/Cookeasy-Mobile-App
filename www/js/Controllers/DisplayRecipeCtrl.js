@@ -1,10 +1,10 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService', 'UserService',
-  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService, UserService) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService',
+  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
-  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/recipe/pictures/upload/" + $stateParams.id;
+  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/recipes/" + $stateParams.id +"/pictures";
   // Seconds passed for timer
   $scope.timerSecondsPassed = 0;
 
@@ -206,13 +206,5 @@ angular.module('starter.controllers')
     timer = $timeout($scope.timerTick,1000);
   };
 
-  // -----------------------profiles
-  $scope.getProfile = function(){
-    $scope.user = {};
-    UserService.getProfile($scope.recipe.author).then(function(user){
-      $scope.user = user;
-      console.log($scope.user);
-    });
-  };
 
 }]);

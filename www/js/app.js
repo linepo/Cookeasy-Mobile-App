@@ -105,7 +105,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
     })
 
     .state('profile', {
-      url: "/profile",
+      url: "/profile/:username",
       controller: 'ProfileCtrl',
       templateUrl: "templates/profile.html",
       resolve: { promise: function($q,$state,Header){

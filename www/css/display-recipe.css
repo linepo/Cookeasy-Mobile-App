@@ -27,7 +27,10 @@
   text-align: center;
   font-size: 12px;
 }
-
+.display-recipe .author{
+  color: black;
+  text-decoration: none;
+}
 /* about the utensils and beaker button */
 .display-recipe .utensils-beaker {
 
@@ -102,7 +105,27 @@
   width: 100%;
   margin-top: 10px;
 }
-
+.display-recipe .item.item-avatar{
+  padding-left: 15px !important;
+  padding-bottom: 0px;
+  padding-top: 10px;
+}
+.display-recipe .item.item-avatar .avatar-author img{
+  max-height: none;
+}
+.display-recipe .item.item-avatar .comment-info{
+  display: inline-block;
+  margin-left: 15px;
+}
+.display-recipe .comment-author{
+  color: black;
+  text-decoration: none;
+}
+.display-recipe .item.item-body.comment-message{
+  padding-left: 15px !important;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
 /*----------------------------------------------------------------*/
 /*--------------------------SLIDE BOX-----------------------------*/
 .transparent {

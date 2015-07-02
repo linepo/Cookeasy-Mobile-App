@@ -16,10 +16,11 @@
     </div>
     <br/>
     <div class="recipe-photo">
-      <img ng-src="{{recipe.picture.public_id | formatImg:100:100}}" alt="Recipe Photo" />
+      <img ng-src="{{recipe.picture.public_id | formatImg:250:200}}" alt="Recipe Photo" />
     </div>
-    <div class="recipe-info-creation" ng-click="getProfile()">
-      Created on {{recipe.createdOn | date}}, by {{recipe.author}}
+    <div class="recipe-info-creation">
+      Created on {{recipe.createdOn | date}}, by
+      <a class="author" href ui-sref="profile({username: recipe.author.username})">{{recipe.author.username}}</a>
     </div>
     <br/>
 
@@ -85,8 +86,9 @@
 
         <div class="list card all-comments" ng-repeat="comment in recipe.comments">
           <div class="item item-avatar">
-            <img src="/img/Avatar/AvatarTest.png">
-            <h2><span class="comment-author">{{comment.author}}</span>
+            <a class="avatar-author" href ui-sref="profile({username: comment.author.username})"><img src="/img/Avatar/AvatarTest.png"></a>
+            <h2 class="comment-info">
+              <a class="comment-author" href ui-sref="profile({username: comment.author.username})">{{comment.author.username}}</a>
               <span ng-if="comment.mark" class="comment-mark">
                 <i ng-repeat="t in [] | range: comment.mark" class="icon ion-android-star">
                 </i><i ng-repeat="t in [] | range: (5-comment.mark)" class="icon ion-android-star-outline"></i>
@@ -208,8 +210,9 @@
 
     <div class="list card all-comments" ng-repeat="comment in recipe.comments">
       <div class="item item-avatar">
-        <img src="/img/Avatar/AvatarTest.png">
-        <h2><span class="comment-author">{{comment.author}}</span>
+        <a class="avatar-author" href ui-sref="profile({username: comment.author.username})"><img src="/img/Avatar/AvatarTest.png"></a>
+        <h2>
+          <a class="comment-author" href ui-sref="profile({username: comment.author.username})">{{comment.author.username}}</a>
           <span ng-if="comment.mark" class="comment-mark">
             <i ng-repeat="t in [] | range: comment.mark" class="icon ion-android-star">
             </i><i ng-repeat="t in [] | range: (5-comment.mark)" class="icon ion-android-star-outline"></i>

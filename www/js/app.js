@@ -121,7 +121,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
     })
 
     .state('profileEdit', {
-      url: "/profile-edit",
+      url: "/profile-edit/:username",
       controller: 'ProfileEditCtrl',
       templateUrl: "templates/profile-edit.html",
       resolve: { promise: function($q,$state,Header){

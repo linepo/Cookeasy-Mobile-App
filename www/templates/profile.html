@@ -2,15 +2,16 @@
     <ion-content class="profile">
 
     <div class="modif-profile">
-      <button class="button button-clear button-positive" ng-click="editAll()">Edit</button>
+      <!-- <button class="button button-clear button-positive" ng-click="editAll()">Edit</button> -->
+      <a class="edit-button" href ui-sref="profileEdit({username: user.username})">Edit</a>
     </div>
 
     <div class="profile-photo">
-        <img src="img/Avatar/CamilleAvatar.png"/>
+        <img ng-src="{{user.picture.public_id | formatImg:250:200}}" alt="Profile Photo" />
     </div>
 
-    <div class="username">PilouMelissaCat24</div>
-    <div class="where">Paris, France</div>
+    <div class="username">{{user.username}}</div>
+    <div class="where">{{user.location}}</div>
 
 <!-- not now
     <div class="row">
@@ -31,24 +32,39 @@
     <div class="list info-perso">
       <div class="item item-icon-left">
         <i class="icon ion-person"></i>
-        <div class="name">Melissa Smith</div>
+        <div class="name">{{user.name}}</div>
       </div>
       <div class="item item-icon-left">
         <i class="icon ion-wand"></i>
-        <div class="date-of-birth">22 Years old</div>
+        <div class="date-of-birth">{{user.dob | ageFromDob}} Years old</div>
+      </div>
+      <div class="item item-icon-left">
+        <i class="icon ion-ribbon-b"></i>
+        <div class="level">Level {{user.level}}</div>
       </div>
     </div>
 
-    <div class="description-area">
-      <p class="description">I like so much cooking for all my family, my friends and even my dogs :p
-        haha ndsvndqb fZBFE V Jn ef"ul8899HGBF  "AQERBNJDS V,VJFERUBT GV UIZB s<
-        juzebfj tgreqvfdiohvn d ihohrnektkeghrnv io"</p>
-    </div>
-
-    <div class="actuality">
-      <p> News </p>
-      <div class="list">
-
+    <textarea class="description-area" ng-model="user.description" readonly="true"></textarea>
+<hr />
+    <div class="activities">
+      <p> Recent activity </p>
+      <div class="list card all-activity" ng-repeat="activity in user.activities">
+        <div class="item item-info">
+          <div class="activity-avatar">
+            <img ng-src="{{user.picture.public_id | formatImg:50:30}}" alt="Profile Photo" />
+          </div>
+          <h2 class="activity-info">
+            <div class="activity-title">{{activity.title}}</div>
+            <div class="activity-date">{{activity.date | date}}</div>
+          </h2>
+        </div>
+        <div class="item item-body activity-content">
+          <div class="activity-content-title" ng-if="activity.content.title">{{activity.content.title}}</div>
+          <div class="activity-content-picture" ng-if="activity.content.picture">
+            <img ng-src="{{activity.content.picture | formatImg:250:200}}" alt="Picture" />
+          </div>
+          <div class="activity-content-text" ng-if="activity.content.text">{{activity.content.text}}</div>
+        </div>
       </div>
     </div>
 

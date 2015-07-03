@@ -8,6 +8,12 @@
 /* about the button edit all profile */
 .profile .modif-profile {
   text-align: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.profile .edit-button {
+  text-decoration: none;
+  color: #387ef5;
 }
 
 /* about the profile photo */
@@ -24,7 +30,7 @@
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 30px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 /* about the profile place */
@@ -32,7 +38,7 @@
   text-align: center;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 17px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 /* about the row info */
@@ -58,18 +64,63 @@
   width: 98%;
   vertical-align: top;
 }
-.profile .name, .date-of-birth, .description {
+.profile .name,
+.profile .date-of-birth,
+.profile .level {
   display: inline-block;
   width: 98%;
   margin-top: 10px;
-  margin-bottom: 3px;
-}
-.profile .description {
-  resize: none;
-  padding-left: 15px;
+  margin-bottom: 7px;
+  color: black;
 }
 .profile .description-area {
-  margin-left: 2px;
-  margin-right: 8px;
+  resize: none;
+  width: 98%;
+  padding: 10px 10px 10px 10px;
   background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  height: 80px;
+}
+.profile hr {
+  width: 98%;
+  background-color: #800000;
+  text-align: center;
+  height: 5px;
+  margin-left: 0px;
+}
+
+/* about all activities of the profile */
+.profile .activities p {
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.profile .list.card.all-activity {
+  width: 98%;
+  margin-left: 0px;
+}
+.profile .item.item-info{
+  padding: 8px 16px 4px 16px;
+}
+.profile .activity-avatar{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+}
+.profile .activity-info{
+  display: inline-block;
+  margin-left: 15px;
+}
+.profile .activity-title{
+  white-space: normal;
+}
+.profile .activity-date{
+  margin-top: 5px;
+  font-size: 12px;
+}
+.profile .activity-content-title,
+.profile .activity-content-picture{
+  text-align: center;
 }

@@ -5,12 +5,9 @@ angular.module('starter.controllers')
     $scope.user = {};
     UserService.getUser($stateParams.username).then(function(user){
       $scope.user = user;
+      console.log($scope.user);
     });
 
-
-    $scope.editAll = function(){
-      $state.go('profileEdit');
-    };
 
 
 

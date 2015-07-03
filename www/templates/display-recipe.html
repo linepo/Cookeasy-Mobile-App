@@ -53,15 +53,15 @@
       <button ng-click="stepForward()" class="button button-block button-assertive start">Start Recipe</button>
       <br/>
 
-      <div class="previous-recipe-pictures" ng-if="recipe.pictures">
+      <div class="previous-recipe-pictures" ng-if="recipe.pictures.public_id">
         <p>Pictures of this recipe by other users:</p>
-        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
+        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures.public_id | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
       </div>
       <br/>
       <script id="image-modal.html" type="text/ng-template">
         <div class="modal image-modal transparent" ng-click="closeModal()">
           <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
-            <ion-slide ng-repeat="image in recipe.pictures">
+            <ion-slide ng-repeat="image in recipe.pictures.public_id">
               <img ng-src="{{image.url}}" class="fullscreen-image" />
             </ion-slide>
           </ion-slide-box>
@@ -178,15 +178,15 @@
     </div>
     <br/>
 
-    <div class="previous-recipe-pictures" ng-if="recipe.pictures">
+    <div class="previous-recipe-pictures" ng-if="recipe.pictures.public_id">
       <p>Pictures of this recipe by users:</p>
-      <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
+      <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures.public_id | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
     </div>
     <br/>
      <script id="image-modal.html" type="text/ng-template">
       <div class="modal image-modal transparent" ng-click="closeModal()">
         <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
-          <ion-slide ng-repeat="image in recipe.pictures">
+          <ion-slide ng-repeat="image in recipe.pictures.public_id">
             <img ng-src="{{image.url}}" class="fullscreen-image" />
           </ion-slide>
         </ion-slide-box>

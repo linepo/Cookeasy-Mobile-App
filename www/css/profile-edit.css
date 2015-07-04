@@ -104,3 +104,18 @@
   font-size: 100%;
   font
 }
+
+/*----------------------------------------------------------------*/
+/*---------------------------ERRORS-------------------------------*/
+
+.profile-edit .input-error{
+  border: 1px solid red !important;
+}
+
+.profile-edit .error-message{
+  text-align: left;
+  color: red;
+  font-style: italic;
+  width: 90%;
+  margin: 0px auto;
+}

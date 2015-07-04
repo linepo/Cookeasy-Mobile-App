@@ -13,24 +13,27 @@
     <div class="username">{{user.username}}</div>
 
     <div class="list info-perso-modif">
-      <div class="item item-icon-left">
+      <div class="item item-icon-left" ng-class="{'input-error': errors.user.name}">
         <i class="icon ion-person"></i>
         <div class="name-modif">
           <input ng-model="user.name" type="text" placeholder="Name" />
         </div>
       </div>
-      <div class="item item-icon-left">
+      <div class="error-message">{{errors.user.name}}</div>
+      <div class="item item-icon-left" ng-class="{'input-error': errors.user.dob}">
         <i class="icon ion-wand"></i>
         <div class="date-of-birth-modif">
           <input ng-model="dobFormatted" type="date" placeholder="Date of birth" />
         </div>
       </div>
-      <div class="item item-icon-left">
+      <div class="error-message">{{errors.user.dob}}</div>
+      <div class="item item-icon-left" ng-class="{'input-error': errors.user.location}">
         <i class="icon ion-location"></i>
         <div class="location-modif">
           <input ng-model="user.location" type="text" placeholder="Location" />
         </div>
       </div>
+      <div class="error-message">{{errors.user.location}}</div>
       <div class="item item-icon-left">
         <i class="icon ion-key"></i>
         <div class="password-modif">
@@ -39,9 +42,10 @@
       </div>
     </div>
 
-    <div class="description-area-modif">
+    <div class="description-area-modif" ng-class="{'input-error': errors.user.description}">
       <textarea ng-model="user.description" type="text" placeholder="Description"></textarea>
     </div>
+    <div class="error-message">{{errors.user.description}}</div>
 
     </ion-content>
 </ion-view>

@@ -32,19 +32,23 @@
     <div class="list info-perso">
       <div class="item item-icon-left">
         <i class="icon ion-person"></i>
-        <div class="name">{{user.name}}</div>
+        <div class="name" ng-if="user.name">{{user.name}}</div>
+        <div class="name" ng-if="!user.name">Name not defined</div>
       </div>
       <div class="item item-icon-left">
         <i class="icon ion-wand"></i>
-        <div class="date-of-birth">{{user.dob | ageFromDob}} Years old</div>
+        <div class="date-of-birth" ng-if="user.dob">{{user.dob | ageFromDob}} Years old</div>
+        <div class="date-of-birth" ng-if=!user.dob>Date of birth not defined</div>
       </div>
       <div class="item item-icon-left">
         <i class="icon ion-ribbon-b"></i>
-        <div class="level">Level {{user.level}}</div>
+        <div class="level" ng-if="user.level">Level {{user.level}}</div>
+        <div class="level" ng-if="!user.level">Level not defined</div>
       </div>
     </div>
 
-    <textarea class="description-area" ng-model="user.description" readonly="true"></textarea>
+    <textarea class="description-area" ng-if="user.description" ng-model="user.description" readonly="true"></textarea>
+    <textarea class="description-area" ng-if="!user.description" readonly="true">Description not defined</textarea>
 <hr />
     <div class="activities">
       <p> Recent activity </p>

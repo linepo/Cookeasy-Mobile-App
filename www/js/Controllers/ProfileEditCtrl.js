@@ -12,33 +12,14 @@ angular.module('starter.controllers')
     $scope.errors = {};
     function checkUserInfo(){
       $scope.errors.user = {};
-      // About name of user
-      if(!$scope.user.name || $scope.user.name == ''){
-        $scope.errors.user.name = 'Name of user should not be empty.';
-      } else if(!isNaN($scope.user.name)){
-        $scope.errors.user.name = 'Name of user should not be a number.';
-      } else if($scope.user.name.length < 2){
-        $scope.errors.user.name = 'Name of user should be at least 2 characters.';
-      }
+      // About name of user - nothing
       // About date of birth
-      if(!$scope.dobFormatted || $scope.dobFormatted == ''){
-        $scope.errors.user.dob = 'Date of birth should not be empty.';
+      if(!$scope.dobFormatted && !($scope.dobFormatted intanceof Date){
+        $scope.errors.user.dob = 'Date of birth should be a valid date.';
       }
-      // About location
-      if(!$scope.user.location || $scope.user.location == ''){
-        $scope.errors.user.location = 'Location should not be empty.';
-      } else if(!isNaN($scope.user.location)){
-        $scope.errors.user.location = 'Location should not be a number.';
-      } else if($scope.user.location.length < 2){
-        $scope.errors.user.location = 'Location should be at least 2 characters.';
-      }
+      // About location - nothing
       // About password
-      // About description
-      if(!$scope.user.description){
-        $scope.errors.user.description = 'Description should not be empty.';
-      } else if(typeof $scope.user.description !== "string" || $scope.user.description.length < 4){
-        $scope.errors.user.description = 'Description should be at least 4 characters.';
-      }
+      // About description - nothing
     }
 
     $scope.saveAll = function(){
@@ -47,6 +28,8 @@ angular.module('starter.controllers')
       if(Object.keys($scope.errors.user).length){
         return;
       }
+      //transform date of birth in the good format
+      $scope.user.dob = $scope.dobFormatted.getTime();
       //save all new info
       UserService.updateUser($scope.user).then(function(){
         //then go back to my profile

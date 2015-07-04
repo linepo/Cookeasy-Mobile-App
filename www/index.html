@@ -16,7 +16,7 @@
     <!-- Cordova Script -->
     <script src="lib/ng-cordova/dist/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
-    
+
     <!-- My App -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
@@ -27,7 +27,6 @@
     <link href="css/profile.css" rel="stylesheet">
     <link href="css/profile-edit.css" rel="stylesheet">
     <link href="css/picture-upload.css" rel="stylesheet">
-    <link href="css/popover.css" rel="stylesheet">
     <link href="css/sign-up.css" rel="stylesheet">
     <link href="css/games.css" rel="stylesheet">
 
@@ -56,26 +55,26 @@
   <body ng-controller="AppCtrl">
     <div ng-show="showHeader" class="bar bar-header bar-assertive">
 
-      <div class="menu-button">
-      <a ui-sref="menu">
+      <div class="button1">
+      <a ui-sref="searchRecipe">
       <button class="button button-clear cookie"><img src="img/Cookie/CookeasyLogo2.png">Cookeasy</button>
       </a>
       </div>
 
-      <div class="searchRecipe-button">
-      <a ui-sref="searchRecipe">
+      <div class="button2">
+      <a ui-sref="createRecipe">
         <button class="button button-clear cfc"><img src="img/CFC/cfc.png"></button>
       </a>
       </div>
 
-      <div class="games-button">
+      <div class="button3">
       <a ui-sref="games">
       <button class="button icon ion-university button-clear"></button>
       </a>
       </div>
 
-      <div class="myProfile-button">
-      <img ng-click="popover.show($event)" src="/img/Avatar/AvatarTest.png">
+      <div class="button4">
+      <img ui-sref="menu" src="/img/Avatar/AvatarTest.png">
       </div>
 
     </div>

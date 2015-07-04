@@ -10,25 +10,25 @@
   max-height: 60px;
 }
 
-.bar.bar-header.bar-assertive .menu-button .button.button-clear.cookie {
+.bar.bar-header.bar-assertive .button1 .button.button-clear.cookie {
   font-family: delux;
   font-size: 22px;
 }
-.bar.bar-header.bar-assertive .menu-button .button.button-clear.cookie img{
+.bar.bar-header.bar-assertive .button1 .button.button-clear.cookie img{
   width: 30%;
 }
 
-.bar.bar-header.bar-assertive .searchRecipe-button {
+.bar.bar-header.bar-assertive .button2 {
   width: 23%;
   text-align: right;
 }
 
-.bar.bar-header.bar-assertive .games-button {
+.bar.bar-header.bar-assertive .button3 {
   width: 24%;
   text-align: right;
 }
 
-.bar.bar-header.bar-assertive .myProfile-button {
+.bar.bar-header.bar-assertive .button4 {
   width: 19%;
   text-align: right;
   margin-top: 3px;

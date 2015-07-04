@@ -12,7 +12,7 @@
         <progress max="100" value="{{uploadProgress}}"></progress>
       </div>
       <div ng-show="loadedPic" ng-if="uploadedPicture" class="picture">
-        <img ng-src="{{uploadedPicture.public_id | formatImg:100:100}}"/>
+        <img ng-src="{{uploadedPicture.public_id | formatImg:250:200}}"/>
       </div>
       <div ng-show="loadedPic" class="upload">
         <button ng-click="uploadPicture()" class="button button-block button-assertive upload">Upload the picture</button>

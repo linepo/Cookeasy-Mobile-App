@@ -13,39 +13,36 @@
     <div class="username">{{user.username}}</div>
 
     <div class="list info-perso-modif">
-      <div class="item item-icon-left" ng-class="{'input-error': errors.user.name}">
+      <div class="item item-icon-left">
         <i class="icon ion-person"></i>
         <div class="name-modif">
-          <input ng-model="user.name" type="text" placeholder="Name" />
+          <input ng-model="$parent.user.name" type="text" placeholder="Name" />
         </div>
       </div>
-      <div class="error-message">{{errors.user.name}}</div>
       <div class="item item-icon-left" ng-class="{'input-error': errors.user.dob}">
         <i class="icon ion-wand"></i>
         <div class="date-of-birth-modif">
-          <input ng-model="dobFormatted" type="date" placeholder="Date of birth" />
+          <input ng-model="$parent.dobFormatted" type="date" placeholder="Date of birth" />
         </div>
       </div>
       <div class="error-message">{{errors.user.dob}}</div>
-      <div class="item item-icon-left" ng-class="{'input-error': errors.user.location}">
+      <div class="item item-icon-left">
         <i class="icon ion-location"></i>
         <div class="location-modif">
-          <input ng-model="user.location" type="text" placeholder="Location" />
+          <input ng-model="$parent.user.location" type="text" placeholder="Location" />
         </div>
       </div>
-      <div class="error-message">{{errors.user.location}}</div>
       <div class="item item-icon-left">
         <i class="icon ion-key"></i>
         <div class="password-modif">
-          <input ng-model="user.password" type="text" placeholder="Password" />
+          <input ng-model="$parent.user.password" type="text" placeholder="Password" />
         </div>
       </div>
     </div>
 
-    <div class="description-area-modif" ng-class="{'input-error': errors.user.description}">
-      <textarea ng-model="user.description" type="text" placeholder="Description"></textarea>
+    <div class="description-area-modif">
+      <textarea ng-model="$parent.user.description" type="text" placeholder="Description"></textarea>
     </div>
-    <div class="error-message">{{errors.user.description}}</div>
 
     </ion-content>
 </ion-view>

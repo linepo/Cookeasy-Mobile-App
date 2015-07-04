@@ -2,8 +2,7 @@
     <ion-content class="profile">
 
     <div class="modif-profile">
-      <!-- <button class="button button-clear button-positive" ng-click="editAll()">Edit</button> -->
-      <a class="edit-button" href ui-sref="profileEdit({username: user.username})">Edit</a>
+      <a class="edit-button" ng-if="isUser" href ui-sref="profileEdit({username: user.username})">Edit</a>
     </div>
 
     <div class="profile-photo">
@@ -11,7 +10,8 @@
     </div>
 
     <div class="username">{{user.username}}</div>
-    <div class="where">{{user.location}}</div>
+    <div class="where" ng-if="user.location">{{user.location}}</div>
+    <div class="where" ng-if="!user.location" style="font-size: 12px; font-style: italic; color: grey;">Location not defined</div>
 
 <!-- not now
     <div class="row">
@@ -33,24 +33,26 @@
       <div class="item item-icon-left">
         <i class="icon ion-person"></i>
         <div class="name" ng-if="user.name">{{user.name}}</div>
-        <div class="name" ng-if="!user.name">Name not defined</div>
+        <div class="name" ng-if="!user.name" style="font-size: 12px; font-style: italic; color: grey;">Name not defined</div>
       </div>
       <div class="item item-icon-left">
         <i class="icon ion-wand"></i>
         <div class="date-of-birth" ng-if="user.dob">{{user.dob | ageFromDob}} Years old</div>
-        <div class="date-of-birth" ng-if=!user.dob>Date of birth not defined</div>
+        <div class="date-of-birth" ng-if=!user.dob style="font-size: 12px; font-style: italic; color: grey;">Date of birth not defined</div>
       </div>
       <div class="item item-icon-left">
         <i class="icon ion-ribbon-b"></i>
-        <div class="level" ng-if="user.level">Level {{user.level}}</div>
-        <div class="level" ng-if="!user.level">Level not defined</div>
+        <div class="level" ng-if="user.level.toString()">Level {{user.level}}</div>
+        <div class="level" ng-if="!user.level.toString()" style="font-size: 12px; font-style: italic; color: grey;">Level not defined</div>
       </div>
     </div>
 
     <textarea class="description-area" ng-if="user.description" ng-model="user.description" readonly="true"></textarea>
-    <textarea class="description-area" ng-if="!user.description" readonly="true">Description not defined</textarea>
-<hr />
-    <div class="activities">
+    <textarea class="description-area" ng-if="!user.description" readonly="true" style="font-size: 12px; font-style: italic; color: grey;">Description not defined</textarea>
+
+<hr ng-if="user.activities.length != 0"/>
+
+    <div class="activities" ng-if="user.activities.length != 0">
       <p> Recent activity </p>
       <div class="list card all-activity" ng-repeat="activity in user.activities">
         <div class="item item-info">

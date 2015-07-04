@@ -122,7 +122,7 @@
         <button ng-click="stepBack()" class="button ion-reply button-assertive"></button>
       </div>
       <div class="picture-step">
-        <img class="recipe-step-picture" ng-repeat="step in recipe.steps" ng-show="step.number == currentStep.number" ng-src="{{step.picture.public_id | formatImg:100:100}}" alt="Recipe Step Photo" />
+        <img class="recipe-step-picture" ng-repeat="step in recipe.steps" ng-show="step.number == currentStep.number" ng-src="{{step.picture.public_id | formatImg:200:150}}" alt="Recipe Step Photo" />
       </div>
       <div class="button-next">
         <button ng-click="stepForward()" class="button ion-forward button-assertive"></button>

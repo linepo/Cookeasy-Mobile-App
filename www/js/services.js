@@ -108,7 +108,7 @@ angular.module('starter.services', [])
     var deferred = $q.defer();
     var req = {
       method: 'POST',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/user/login',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/login',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -116,11 +116,7 @@ angular.module('starter.services', [])
       data: {id: email, password: password }
     };
     $http(req).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.token);
-      }
+      deferred.resolve(data);
     }).error(function(error){
       deferred.reject(error);
     });
@@ -139,11 +135,22 @@ angular.module('starter.services', [])
       data: {email: email, password: password, username: username }
     };
     $http(req).success(function(data){
-      if(data.error){
-        deferred.reject(data.error);
-      } else {
-        deferred.resolve(data.token);
-      }
+      deferred.resolve(data.token,data.user);
+    }).error(function(res){
+      deferred.reject(res.error);
+    });
+    return deferred.promise;
+  };
+
+  services.updateUser = function(user){
+    var deferred = $q.defer();
+    var req = {
+      method: 'PUT',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/users/' + user.username,
+      data: user
+    };
+    $http(req).success(function(){
+      deferred.resolve();
     }).error(function(res){
       deferred.reject(res.error);
     });
@@ -153,14 +160,29 @@ angular.module('starter.services', [])
   return services;
 })
 
-.factory('AuthenticationService', function () {
+.factory('AuthenticationService', function ($window) {
+   var userLogged = false;
    var auth = {
-     isLogged: false
+     currentUser: currentUser,
+     setUser: setUser
    };
+
+   function currentUser(){
+     if(!userLogged){
+       var user = $window.localStorage.user;
+       if(user) userLogged = JSON.parse(user);
+     }
+     return userLogged;
+   }
+
+   function setUser(token,user){
+     $window.localStorage.user = JSON.stringify(user);
+     $window.localStorage['token'] = token;
+   }
    return auth;
 })
 
-.factory('TokenInterceptor', function ($q, $window, AuthenticationService) {
+.factory('TokenInterceptor', function ($q, $window) {
     return {
       request: function (config) {
         config.headers = config.headers || {};
@@ -168,16 +190,6 @@ angular.module('starter.services', [])
           config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
         }
         return config;
-      },
-      requestError: function(rejection) {
-        return $q.reject(rejection);
-      },
-      /* Set Authentication.isAuthenticated to true if 200 received */
-      response: function (response) {
-        if (response != null && response.status == 200 && $window.localStorage.token && !AuthenticationService.isAuthenticated) {
-          AuthenticationService.isAuthenticated = true;
-        }
-        return response || $q.when(response);
       }
     };
 })

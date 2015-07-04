@@ -8,9 +8,8 @@ angular.module('starter.controllers')
   $scope.login = function () {
     $scope.dataLoading = true;
 
-    UserService.login($scope.user.email, $scope.user.password).then(function (token) {
-      AuthenticationService.isLogged = true;
-      $window.localStorage['token'] = token;
+    UserService.login($scope.user.email, $scope.user.password).then(function (data) {
+      AuthenticationService.setUser(data.token,data.user);
       $scope.dataLoading = false;
       $state.go('searchRecipe');
     },function(err){

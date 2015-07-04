@@ -26,9 +26,8 @@ angular.module('starter.controllers')
   $scope.register = function () {
     $scope.dataLoading = true;
 
-    UserService.signUp($scope.user.email, $scope.user.password, $scope.user.username).then(function(token) {
-      AuthenticationService.isLogged = true;
-      $window.sessionStorage.token = token;
+    UserService.signUp($scope.user.email, $scope.user.password, $scope.user.username).then(function(data) {
+      AuthenticationService.setUser(data.token,data.user);
       $scope.dataLoading = false;
       Header.show();
       $state.go('searchRecipe');

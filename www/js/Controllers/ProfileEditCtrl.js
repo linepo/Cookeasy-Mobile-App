@@ -11,9 +11,10 @@ angular.module('starter.controllers')
 
     $scope.saveAll = function(){
       //save all new info
-
-      //then go back to my profile
-      $state.go('profile/' + $scope.user.username);
+      UserService.updateUser($scope.user).then(function(){
+        //then go back to my profile
+        $state.go('profile', {username: $scope.user.username});
+      });
     };
 
 

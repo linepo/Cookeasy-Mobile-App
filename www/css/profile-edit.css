@@ -49,19 +49,22 @@
   padding-top: 2px;
   width: 98%;
   vertical-align: top;
+  height: 55px;
 }
 .profile-edit .item-icon-left .icon {
   left: inherit;
 }
 .profile-edit .icon.ion-person,
 .profile-edit .icon.ion-wand,
-.profile-edit .icon.ion-location {
+.profile-edit .icon.ion-location,
+.profile-edit .icon.ion-key {
   max-height: 100%;
   left: 10px;
 }
 .profile-edit .name-modif,
 .profile-edit .date-of-birth-modif,
-.profile-edit .location-modif {
+.profile-edit .location-modif,
+.profile-edit .password-modif {
   display: inline-block;
   width: 80%;
   margin-top: 10px;
@@ -69,12 +72,22 @@
   color: black;
 }
 .profile-edit .name-modif input,
-.profile-edit .location-modif input{
+.profile-edit .location-modif input,
+.profile-edit .password-modif input {
   font-size: 100%;
 }
 .profile-edit .date-of-birth-modif input{
   padding-top: 0px;
   font-size: 100%;
+}
+.profile-edit .password-modif {
+  -webkit-text-security: disc;
+  height:20px;
+  -webkit-appearance: textfield;
+  padding: 1px;
+  background-color: white;
+  -webkit-user-select: text;
+  cursor: auto;
 }
 .profile-edit .description-area-modif {
   resize: none;

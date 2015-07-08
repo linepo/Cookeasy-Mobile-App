@@ -11,7 +11,7 @@ angular.module('starter.controllers')
   $scope.recipe = {};
   RecipeService.get($stateParams.id).then(function(recipe){
     $scope.recipe = recipe;
-    $filter('orderObjectBy')($scope.recipe.pictures,'createdOn',-1);
+    //$filter('orderObjectBy')($scope.recipe.pictures,'createdOn',-1);
   });
 
   // Current step

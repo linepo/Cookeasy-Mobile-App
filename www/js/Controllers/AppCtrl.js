@@ -1,11 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppCtrl', ['$scope', '$ionicPopover', 'Header', function($scope, $ionicPopover, Header) {
-
-  $ionicPopover.fromTemplateUrl('templates/popover.html', {
-    scope: $scope
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
+.controller('AppCtrl', ['$scope', 'Header', function($scope, Header) {
 
   $scope.showHeader = false;
   $scope.$watch(function(){

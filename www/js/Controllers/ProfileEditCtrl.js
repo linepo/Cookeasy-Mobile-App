@@ -12,14 +12,12 @@ angular.module('starter.controllers')
     $scope.errors = {};
     function checkUserInfo(){
       $scope.errors.user = {};
-      // About name of user - nothing
+      // No check of errors for : name of user, location and description
       // About date of birth
-      if(!$scope.dobFormatted && !($scope.dobFormatted intanceof Date){
+      if(!$scope.dobFormatted && !($scope.dobFormatted instanceof Date)){
         $scope.errors.user.dob = 'Date of birth should be a valid date.';
       }
-      // About location - nothing
       // About password
-      // About description - nothing
     }
 
     $scope.saveAll = function(){

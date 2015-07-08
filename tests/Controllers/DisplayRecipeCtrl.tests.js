@@ -265,7 +265,7 @@ describe('Controllers - DisplayRecipeCtrl', function(){
 
       scope.mycomment = 'abcd';
       scope.addMyComment();
-      expect(scope.errors.comment).toEqual('Comment should be more developped.');
+      expect(scope.errors.comment).toEqual('Comment should be at least 10 characters.');
 
       // Add a comment without errors without mark
       scope.mycomment = 'This is a complete comment.';

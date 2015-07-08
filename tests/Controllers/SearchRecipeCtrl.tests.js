@@ -16,6 +16,11 @@ describe('Controllers - SearchRecipeCtrl', function(){
         deferred.resolve([{name: 'carrot'}]);
         return deferred.promise;
       })
+      // getTrends: jasmine.createSpy("getTrends").and.callFake(function(){
+      //   var deferred = $q.defer();
+      //   deferred.resolve();
+      //   return deferred.promise;
+      // })
     };
 
     scope = $rootScope.$new();

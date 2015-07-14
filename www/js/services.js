@@ -206,4 +206,64 @@ angular.module('starter.services', [])
       return deferred.promise;
     }
   };
+})
+
+.factory('QuizService', function ($http,$q) {
+  var services = {};
+
+  services.create = function (quiz){
+    var deferred = $q.defer();
+    var req = {
+      method: 'POST',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/games/quizzes',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: quiz
+    };
+    $http(req).success(function(quizzes){
+      deferred.resolve(quizzes.id);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
+  services.get = function(id){
+    var deferred = $q.defer();
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/games/' + id).success(function(quizzes){
+      deferred.resolve(quizzes);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
+  services.getTrends = function(){
+    var deferred = $q.defer();
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/games').success(function(quizzes){
+      deferred.resolve(quizzes);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
+  services.getSearchQuiz = function(mysearch){
+    var deferred = $q.defer();
+    var req = {
+      method: 'GET',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/quizzes',
+      params: {match: mysearch}
+    };
+    $http(req).success(function(quizzes){
+      deferred.resolve(quizzes);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
+  return services;
 });

@@ -156,8 +156,56 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
         }
         return deferred.promise;
       }}
-    });
+    })
 
+    .state('createQuiz', {
+      url: "/quiz/create",
+      controller: 'CreateQuizCtrl',
+      templateUrl: "templates/create-quiz.html",
+      resolve: { promise: function($q,$state,Header){
+        var deferred = $q.defer();
+        deferred.resolve();
+        if(localStorage.token){
+          Header.show();
+        } else {
+          $state.go('login');
+        }
+        return deferred.promise;
+      }}
+    });
+/*
+    .state('displayQuiz', {
+      url: "/quiz/display/:id",
+      controller: 'DisplayQuizCtrl',
+      templateUrl: "templates/display-quiz.html",
+      resolve: { promise: function($q,$state,Header){
+        var deferred = $q.defer();
+        deferred.resolve();
+        if(localStorage.token){
+          Header.show();
+        } else {
+          $state.go('login');
+        }
+        return deferred.promise;
+      }}
+    })
+
+    .state('searchQuiz', {
+      url: "/quiz/search",
+      controller: 'SearchQuizCtrl',
+      templateUrl: "templates/search-quiz.html",
+      resolve: { promise: function($q,$state,Header){
+        var deferred = $q.defer();
+        deferred.resolve();
+        if(localStorage.token){
+          Header.show();
+        } else {
+          $state.go('login');
+        }
+        return deferred.promise;
+      }}
+    });
+*/
   $httpProvider.interceptors.push('TokenInterceptor');
 
 }])

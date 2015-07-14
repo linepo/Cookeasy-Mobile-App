@@ -1,0 +1,160 @@
+/* about the entire page */
+.create-quiz {
+  text-align: center;
+  margin-top: 50px;
+}
+/*----------------------------------------------------------------*/
+/*---------------------------BUTTONS------------------------------*/
+/* for the "Next" button on the first page
+* and for the "Set timer" and "Add photo" on each step page */
+.create-quiz .button.button-block {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+  vertical-align:middle;
+  width: 95%;
+  margin: 0px auto;
+  box-shadow: 2px 2px 2px grey;
+}
+
+/* for every button on each step page */
+.create-quiz .button.button-assertive {
+  background-color: #800000;
+  border-color: #800000;
+  box-shadow: 2px 2px 2px grey;
+}
+.create-quiz .button.button-block.button-assertive {
+  background-color: #ef473a;
+  border-color: #e42012;
+  box-shadow: 2px 2px 2px grey;
+}
+
+/* about the "delete step" button */
+.create-quiz .button.button-assertive.button-clear.button-delete-step {
+  color: #B00000;
+  background-color: #FFE4E1;
+  border-color: #FFE4E1;
+  box-shadow: 0px 0px 0px #FFE4E1;
+}
+
+/*----------------------------------------------------------------*/
+/*---------------------------INPUTS-------------------------------*/
+/* about the input of the name of the recipe created */
+.create-quiz .quiz-name {
+  vertical-align: middle;
+  width: 90%;
+  padding: 5px 0px;
+  margin: 0px auto;
+}
+
+/* for each input of the user about ingredients and recipe title */
+.create-quiz .list-inset .item.item-input input {
+  padding-right: 10px;
+}
+
+/* for the type of cook for this recipe */
+.create-quiz .ion-input-select {
+  -webkit-appearance:none;
+  border:thin solid #dddddd;
+  vertical-align:middle;
+  color:#333;
+  padding: 5px 0px;
+  overflow:hidden;
+  box-sizing:border-box;
+  width:90%;
+  font-size:1rem;
+  text-indent:20px;
+  background-image: url(http://i.imgur.com/nA9xx1X.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: #fff;
+}
+
+/* about the picture in the step page */
+.create-quiz .stepPic {
+  background-color: white;
+  width: 95%;
+  margin: 0px auto;
+  border: 1px solid #D0D0D0;
+  box-sizing: border-box;
+}
+
+/*----------------------------------------------------------------*/
+/*---------------------------TITLES-------------------------------*/
+/* about the title of every step */
+.create-quiz h1 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  margin-top: 15px;
+}
+/* about the title of the create-quiz page */
+.create-quiz h1.createQuiz {
+  font-size: 30px;
+  border-style: groove;
+  border-color: black;
+}
+
+/* about the header of the step page */
+.create-quiz .header-question {
+  width: 100%;
+}
+.create-quiz .header-question .step-delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+/*----------------------------------------------------------------*/
+/*---------------------------ERRORS-------------------------------*/
+.create-quiz .input-error{
+  border: 1px solid red !important;
+}
+
+.create-quiz .error-message{
+  text-align: left;
+  color: red;
+  font-style: italic;
+  width: 90%;
+  margin: 0px auto;
+}
+/*----------------------------------------------------------------*/
+/* about data loading */
+.spin {
+  -webkit-animation: spin .2s infinite linear;
+  -moz-animation: spin .2s infinite linear;
+  -o-animation: spin .2s infinite linear;
+  animation: spin .2s infinite linear;
+     -webkit-transform-origin: 50% 58%;
+         transform-origin:50% 58%;
+         -ms-transform-origin:50% 58%; /* IE 9 */
+}
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,83 @@
+<ion-view>
+  <ion-content class="create-quiz">
+
+    <div ng-show="createQuizInfo">
+      <h1 class="createQuiz">Create your quiz</h1><br/>
+      <div class="quiz-name">
+        <p>Set a title for your quiz</p>
+        <label class="item item-input">
+          <input ng-model="$parent.game.title" type="text" placeholder="Quiz title" />
+        </label>
+      </div>
+      <div class="main-picture">
+        <i class="icon ion-camera camera"></i>
+        <p class="last-step-picture">Main picture of your quiz</p>
+        <picture-upload uploaded-picture="game.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+      </div>
+      <button ng-click="newQuestion()" class="button button-block button-assertive">Create question</button>
+    </div>
+
+    <div ng-show="createQuestion">
+      <div class="question-number">
+        <h1>Question {{nbQuestion}}</h1>
+      </div>
+      <!-- question title -->
+      <input ng-model="$parent.currentQuestion.title" type="text" placeholder="Question"/>
+
+      <!-- answer part -->
+      <p>Answer type:</p>
+      <div class="list">
+        <label class="item item-radio">
+          <input ng-click="textChecked()" type="radio" name="group" checked="checked">
+          <div class="item-content">Text</div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+          <input ng-click="imageChecked()" type="radio" name="group">
+          <div class="item-content">Image</div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+      </div>
+
+      <!-- type TEXT -->
+      <div ng-show="typeText" class="textQuestion">
+        <p>Add answers</p>
+        <div class="list-answers">
+          <div class="list list-inset answers">
+            <label class="item item-input">
+              <input ng-model="$parent.currentAnswer.text" type="text" placeholder="Answer" />
+            </label>
+          </div>
+          <div class="add-answer-button">
+            <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive">Uncorrect</button>
+            <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive">Correct</button>
+          </div>
+        </div>
+
+        <p>List of answers</p>
+        <div class="list">
+          <div class="item item-button-right" ng-repeat="answer in currentQuestion.answers">
+            {{answer.text}}
+            <i ng-if="answer.correct == true" class="icon ion-checkmark-round"></i>
+            <i ng-if="answer.correct == false" class="icon ion-close-round"></i>
+          </div>
+        </div>
+      </div>
+      <!-- type IMAGE -->
+      <div ng-show="typeImage" class="imageQuestion">
+        <input ng-model="$parent.currentQuestion.answer" type="text" placeholder="Text on picture (optional)"/>
+        <picture-upload uploaded-picture="currentQuestion.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+
+        <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive">Uncorrect</button>
+        <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive">Correct</button>
+      </div>
+
+      <!-- same -->
+      <p></p>
+      <button ng-click="newQuestion()" class="button button-assertive">Next Question</button>
+      <button ng-click="finishQuiz()" ng-disabled="dataLoading" class="button button-assertive">Finish quiz</button>
+      <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,12 +1,12 @@
 angular.module('starter.controllers')
-.controller('CreateQuizCtrl', [ '$scope', '$rootScope', '$state', 'QuizService',
-  function($scope, $rootScope, $state, QuizService) {
+.controller('CreateQuizCtrl', [ '$scope', '$rootScope', '$state', 'GameService',
+  function($scope, $rootScope, $state, GameService) {
 
   $scope.createQuizInfo = true;
   $scope.createQuestion = false;
   $scope.typeText = false;
   $scope.typeImage = false;
-  //$scope.errors = {};
+  $scope.errors = {};
   $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/picture/upload";
 
   $scope.textChecked = function(){
@@ -21,24 +21,42 @@ angular.module('starter.controllers')
   //Questions of the quiz
   $scope.questions = [];
   //Current question in edition
-  $scope.currentQuestion = {answers: []};
+  $scope.currentQuestion = {number: 0, answers: []};
   //Current answer in edition
   $scope.currentAnswer = {};
-  //Number of questions
-  $scope.nbQuestion = 1;
 
   // errors............
+  function checkQuizInfo(){
+    $scope.errors = {};
+    // Name of quiz
+    if(!$scope.quizTitle || $scope.quizTitle == ''){
+      $scope.errors.name = 'Quiz title should not be empty.';
+    } else if($scope.quizTitle.length < 5){
+      $scope.errors.name = 'Quiz title should be at least 5 characters.';
+    }
+    // Presence of main picture
+  }
+  function checkCurrentQuizInfo(){
+
+  }
 
   //Go to next question
   $scope.newQuestion = function(){
+    //Get current question number
+    var questNb = $scope.currentQuestion.number || 0;
+    //check errors
+    if(questNb == 0){
+      checkQuizInfo();
+    } else {
+      checkCurrentQuizInfo();
+    }
+    if(Object.keys($scope.errors).length > 0){
+      return;
+    }
     $scope.createQuizInfo = false;
     $scope.createQuestion = true;
     $scope.typeText = true;
-    //Get current question number
-    var questNb = $scope.nbQuestion;
-
-    //check input errors...
-
+    $scope.typeImage = false;
     //Save current question
     if(questNb){
       if(questNb < ($scope.questions.length+1)){
@@ -47,11 +65,12 @@ angular.module('starter.controllers')
         $scope.questions.push($scope.currentQuestion);
       }
     }
+    console.log($scope.questions);
     //Go to next question
     if(questNb < ($scope.questions.length)){
       $scope.currentQuestion = $scope.questions[questNb];
     } else {
-      $scope.currentQuestion = {answers: []};
+      $scope.currentQuestion = {number: (questNb+1), answers: []};
     }
   }
 
@@ -65,6 +84,7 @@ angular.module('starter.controllers')
     console.log($scope.currentAnswer);
     $scope.currentAnswer = {};
     console.log($scope.currentQuestion);
+    console.log($scope.questions);
     //delete $scope.errors.listAnswer;
   }
 
@@ -78,32 +98,33 @@ angular.module('starter.controllers')
     console.log($scope.currentAnswer);
     $scope.currentAnswer = {};
     console.log($scope.currentQuestion);
+    console.log($scope.questions);
     //delete $scope.errors.listAnswer;
   }
 
   //Go to previous question
   $scope.questionBack = function(){
     // Get current question number
-    var questionNb = $scope.currentQuestion.number;
+    var questNb = $scope.currentQuestion.number;
     // Save current question
-    if(questionNb > $scope.questions.length){
-      $scope.questions.push($scope.currentStep);
+    if(questNb > $scope.questions.length){
+      $scope.questions.push($scope.currentQuestion);
     } else {
-      $scope.questions[questionNb-1] = $scope.currentQuestion;
+      $scope.questions[questNb-1] = $scope.currentQuestion;
     }
     // Go to previous question
-    if(questionNb > 1){
-      $scope.currentQuestion = $scope.questions[questionNb-2];
+    if(questNb > 1){
+      $scope.currentQuestion = $scope.questions[questNb-2];
     } else {
       $scope.createQuestion = false;
       $scope.createQuizInfo = true;
-      $scope.currentQuestion = {};
+      $scope.currentQuestion = {answers: []};
     }
   };
 
   $scope.setPicture = function(picture){
     if($scope.createQuizInfo){
-      $scope.mainQuiz.picture = picture;
+      $scope.game.picture = picture;
     }
     if($scope.createQuestion){
       $scope.currentQuestion.picture = picture;
@@ -114,29 +135,30 @@ angular.module('starter.controllers')
   $scope.finishQuiz = function(){
     //check errors............
     //Get current question number
-    var questionNb = $scope.currentQuestion.number || 0;
+    var questNb = $scope.currentQuestion.number || 0;
     //Save current question
-    if(questionNb){
-      if(questionNb < ($scope.questions.length+1)){
-        $scope.questions[questionNb-1] = $scope.currentQuestion;
+    if(questNb){
+      if(questNb < ($scope.questions.length+1)){
+        $scope.questions[questNb-1] = $scope.currentQuestion;
       } else {
         $scope.questions.push($scope.currentQuestion);
       }
     }
     //Create quiz
     var quiz = {};
-    quiz.questions.title = $scope.myQuizName;
+    quiz.questions = $scope.questions;
+    //questions.
+    quiz.questions.title = $scope.quizTitle;
     //quiz.questions.type = ;
-    quiz.questions.picture = $scope.mainQuiz.picture;
-    quiz.questions.answers = $scope.listAnswer;
+    //quiz.questions.picture = $scope.game.picture;
     console.log(quiz);
+
     //Go to final page -> display quiz
     $scope.dataLoading = true;
-    QuizService.create(quiz).then(function(id){
+    GameService.create(quiz).then(function(id){
       $scope.dataLoading = false;
       //then lead to the display of the created quiz
       $state.go('displayQuiz', {id: id});
-      console.log("display quiz");
     },function(err){
       $scope.dataLoading = false;
       alert("Error during creating quiz process: "+err);

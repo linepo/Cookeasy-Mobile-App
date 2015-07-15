@@ -208,7 +208,7 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('QuizService', function ($http,$q) {
+.factory('GameService', function ($http,$q) {
   var services = {};
 
   services.create = function (quiz){

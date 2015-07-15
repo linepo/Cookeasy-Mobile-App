@@ -1,12 +1,127 @@
-/* about the entire page */
+/* ------------------ GENERAL -------------------- */
 .create-quiz {
   text-align: center;
   margin-top: 50px;
 }
-/*----------------------------------------------------------------*/
-/*---------------------------BUTTONS------------------------------*/
-/* for the "Next" button on the first page
-* and for the "Set timer" and "Add photo" on each step page */
+.create-quiz h1 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+/* -------------- PAGE CREATE INFO QUIZ ------------- */
+.create-quiz h1.createQuiz {
+  font-size: 30px;
+  border-style: groove;
+  border-color: black;
+}
+.create-quiz .quiz-name {
+  vertical-align: middle;
+  width: 90%;
+  padding: 5px 0px;
+  margin: 0px auto;
+}
+.create-quiz .list-inset .item.item-input input {
+  padding-right: 10px;
+}
+.create-quiz .main-picture {
+
+}
+.create-quiz .camera {
+  font-size: 70px;
+}
+.create-quiz .header-main-picture {
+
+}
+.create-quiz .quizPic {
+  background-color: white;
+  width: 95%;
+  margin: 0px auto;
+  border: 1px solid #D0D0D0;
+  box-sizing: border-box;
+}
+.create-quiz .createQuestion {
+  margin-top: 30px !important;
+  font-weight: bold;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 20px;
+}
+
+/* ------- PAGE CREATE QUESTION WITH ANSWERS ------- */
+.create-quiz .question-number {
+  margin-bottom: 25px;
+}
+.create-quiz .question-title input {
+  vertical-align: middle;
+  width: 95%;
+  margin: 0px auto;
+  padding-left: 10px;
+}
+/* */
+.create-quiz .p {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 20px;
+}
+/* Text/Image Type Checkbox */
+.create-quiz .item.item-radio {
+  width: 95%;
+  margin: 0px auto;
+}
+.create-quiz .item-content {
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.create-quiz .item.item-radio i {
+  padding: 0px 10px 0px 0px;
+}
+/* ---- TEXT TYPE ---- */
+.create-quiz .answer-title input {
+  vertical-align: middle;
+  width: 95%;
+  margin: 0px auto;
+  padding-left: 10px;
+}
+/* list of answers */
+.create-quiz .list {
+  width: 95%;
+  margin: 0px auto;
+  margin-bottom: 20px;
+}
+.create-quiz .item {
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.create-quiz .answer-name {
+  display: inline-block;
+  width: 95%;
+}
+.create-quiz .un-correct {
+  display: inline-block;
+}
+
+/* ---- IMAGE TYPE ---- */
+.create-quiz .pic-text input {
+  vertical-align: middle;
+  width: 95%;
+  margin: 0px auto;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.create-quiz .questPic {
+  background-color: white;
+  width: 95%;
+  margin: 0px auto;
+  border: 1px solid #D0D0D0;
+  box-sizing: border-box;
+}
+
+
+/* --------------BUTTONS-------------- */
+/* for the "Next" button on the first page */
 .create-quiz .button.button-block {
   background-color: #800000 !important;
   border-color: #800000 !important;
@@ -28,79 +143,25 @@
   box-shadow: 2px 2px 2px grey;
 }
 
-/* about the "delete step" button */
-.create-quiz .button.button-assertive.button-clear.button-delete-step {
-  color: #B00000;
-  background-color: #FFE4E1;
-  border-color: #FFE4E1;
-  box-shadow: 0px 0px 0px #FFE4E1;
-}
-
-/*----------------------------------------------------------------*/
-/*---------------------------INPUTS-------------------------------*/
-/* about the input of the name of the recipe created */
-.create-quiz .quiz-name {
-  vertical-align: middle;
-  width: 90%;
-  padding: 5px 0px;
-  margin: 0px auto;
-}
-
-/* for each input of the user about ingredients and recipe title */
-.create-quiz .list-inset .item.item-input input {
-  padding-right: 10px;
-}
-
-/* for the type of cook for this recipe */
-.create-quiz .ion-input-select {
-  -webkit-appearance:none;
-  border:thin solid #dddddd;
-  vertical-align:middle;
-  color:#333;
-  padding: 5px 0px;
-  overflow:hidden;
-  box-sizing:border-box;
-  width:90%;
-  font-size:1rem;
-  text-indent:20px;
-  background-image: url(http://i.imgur.com/nA9xx1X.png);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-color: #fff;
-}
-
-/* about the picture in the step page */
-.create-quiz .stepPic {
-  background-color: white;
+/* 2 buttons correct/uncorrect */
+.create-quiz .add-answer-button {
   width: 95%;
   margin: 0px auto;
-  border: 1px solid #D0D0D0;
-  box-sizing: border-box;
+  margin-top: 20px;
+}
+.create-quiz .correct,
+.create-quiz .uncorrect {
+
 }
 
-/*----------------------------------------------------------------*/
-/*---------------------------TITLES-------------------------------*/
-/* about the title of every step */
-.create-quiz h1 {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-size: 30px;
-  margin-top: 15px;
+.create-quiz .end-button{
+  width: 98%;
+  margin: 0px auto;
 }
-/* about the title of the create-quiz page */
-.create-quiz h1.createQuiz {
-  font-size: 30px;
-  border-style: groove;
-  border-color: black;
-}
-
-/* about the header of the step page */
-.create-quiz .header-question {
-  width: 100%;
-}
-.create-quiz .header-question .step-delete-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.create-quiz .next,
+.create-quiz .finish {
+  width: 48%;
+  font-weight: bold;
 }
 /*----------------------------------------------------------------*/
 /*---------------------------ERRORS-------------------------------*/

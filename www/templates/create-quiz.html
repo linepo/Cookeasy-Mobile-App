@@ -5,27 +5,33 @@
       <h1 class="createQuiz">Create your quiz</h1><br/>
       <div class="quiz-name">
         <p>Set a title for your quiz</p>
-        <label class="item item-input">
-          <input ng-model="$parent.game.title" type="text" placeholder="Quiz title" />
-        </label>
+        <div ng-class="{'input-error': errors.name}">
+          <label class="item item-input" ng-class="{'input-error': errors.name}">
+            <input ng-model="$parent.quizTitle" type="text" placeholder="Quiz title" />
+          </label>
+        </div>
+        <div class="error-message">{{errors.name}}</div>
       </div>
       <div class="main-picture">
         <i class="icon ion-camera camera"></i>
-        <p class="last-step-picture">Main picture of your quiz</p>
-        <picture-upload uploaded-picture="game.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+        <p class="header-main-picture">Main picture of your quiz</p>
+        <div class="quizPic">
+          <picture-upload uploaded-picture="game.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+        </div>
       </div>
-      <button ng-click="newQuestion()" class="button button-block button-assertive">Create question</button>
+      <button ng-click="newQuestion()" class="button button-block button-assertive createQuestion">Create all questions</button>
     </div>
 
     <div ng-show="createQuestion">
       <div class="question-number">
-        <h1>Question {{nbQuestion}}</h1>
+        <h1>Question {{currentQuestion.number}}</h1>
       </div>
       <!-- question title -->
-      <input ng-model="$parent.currentQuestion.title" type="text" placeholder="Question"/>
-
+      <div class="question-title">
+        <input ng-model="$parent.currentQuestion.title" type="text" placeholder="Question"/>
+      </div>
       <!-- answer part -->
-      <p>Answer type:</p>
+      <p class="p">Answer type</p>
       <div class="list">
         <label class="item item-radio">
           <input ng-click="textChecked()" type="radio" name="group" checked="checked">
@@ -41,41 +47,55 @@
 
       <!-- type TEXT -->
       <div ng-show="typeText" class="textQuestion">
-        <p>Add answers</p>
-        <div class="list-answers">
-          <div class="list list-inset answers">
-            <label class="item item-input">
-              <input ng-model="$parent.currentAnswer.text" type="text" placeholder="Answer" />
-            </label>
+        <p class="p">Add answers</p>
+        <div class="enter-answers">
+          <div class="answer-title">
+            <input ng-model="$parent.currentAnswer.text" type="text" placeholder="Answer" />
           </div>
           <div class="add-answer-button">
-            <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive">Uncorrect</button>
-            <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive">Correct</button>
+            <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive uncorrect">Uncorrect</button>
+            <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive correct">Correct</button>
           </div>
         </div>
 
-        <p>List of answers</p>
-        <div class="list">
-          <div class="item item-button-right" ng-repeat="answer in currentQuestion.answers">
-            {{answer.text}}
-            <i ng-if="answer.correct == true" class="icon ion-checkmark-round"></i>
-            <i ng-if="answer.correct == false" class="icon ion-close-round"></i>
+        <div class="list-answers">
+          <p class="p">List of answers</p>
+          <div class="list">
+            <div class="item" ng-repeat="answer in currentQuestion.answers">
+              <div class="answer-name">{{answer.text}}</div>
+              <div class="un-correct">
+                <i ng-if="answer.correct == true" class="icon ion-checkmark-round"></i>
+                <i ng-if="answer.correct == false" class="icon ion-close-round"></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <!-- type IMAGE -->
       <div ng-show="typeImage" class="imageQuestion">
-        <input ng-model="$parent.currentQuestion.answer" type="text" placeholder="Text on picture (optional)"/>
-        <picture-upload uploaded-picture="currentQuestion.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+        <div class="pic-text">
+            <input ng-model="$parent.currentQuestion.answer" type="text" placeholder="Text on picture (optional)"/>
+        </div>
+        <div class="questPic">
+          <picture-upload uploaded-picture="currentQuestion.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+        </div>
+        <div class="add-answer-button">
+          <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive uncorrect">Uncorrect</button>
+          <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive correct">Correct</button>
+        </div>
 
-        <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive">Uncorrect</button>
-        <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive">Correct</button>
+        <div class="list-answers">
+          <p class="p">List of answers</p>
+
+        </div>
       </div>
 
       <!-- same -->
       <p></p>
-      <button ng-click="newQuestion()" class="button button-assertive">Next Question</button>
-      <button ng-click="finishQuiz()" ng-disabled="dataLoading" class="button button-assertive">Finish quiz</button>
+      <div class="end-button">
+        <button ng-click="newQuestion()" class="button button-assertive next">Next Question</button>
+        <button ng-click="finishQuiz()" ng-disabled="dataLoading" class="button button-assertive finish">Finish quiz</button>
+      </div>
       <i ng-show="dataLoading" class="icon ion-load-a spin"></i>
     </div>
 

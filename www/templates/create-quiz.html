@@ -5,7 +5,7 @@
       <h1 class="createQuiz">Create your quiz</h1><br/>
       <div class="quiz-name">
         <p>Set a title for your quiz</p>
-        <div ng-class="{'input-error': errors.name}">
+        <div >
           <label class="item item-input" ng-class="{'input-error': errors.name}">
             <input ng-model="$parent.quizTitle" type="text" placeholder="Quiz title" />
           </label>
@@ -28,8 +28,9 @@
       </div>
       <!-- question title -->
       <div class="question-title">
-        <input ng-model="$parent.currentQuestion.title" type="text" placeholder="Question"/>
+        <input ng-model="$parent.currentQuestion.title" type="text" placeholder="Question" ng-class="{'input-error': errors.question.title}"/>
       </div>
+      <div class="error-message">{{errors.question.title}}</div>
       <!-- answer part -->
       <p class="p">Answer type</p>
       <div class="list">
@@ -50,8 +51,9 @@
         <p class="p">Add answers</p>
         <div class="enter-answers">
           <div class="answer-title">
-            <input ng-model="$parent.currentAnswer.text" type="text" placeholder="Answer" />
+            <input ng-model="$parent.currentAnswer.text" type="text" placeholder="Answer" ng-class="{'input-error': errors.answer}"/>
           </div>
+          <div class="error-message">{{errors.answer}}</div>
           <div class="add-answer-button">
             <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive uncorrect">Uncorrect</button>
             <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive correct">Correct</button>
@@ -61,13 +63,14 @@
         <div class="list-answers">
           <p class="p">List of answers</p>
           <div class="list">
-            <div class="item" ng-repeat="answer in currentQuestion.answers">
+            <div class="item" ng-repeat="answer in currentQuestion.answers" ng-class="{'input-error': errors.question.answer}">
               <div class="answer-name">{{answer.text}}</div>
               <div class="un-correct">
                 <i ng-if="answer.correct == true" class="icon ion-checkmark-round"></i>
                 <i ng-if="answer.correct == false" class="icon ion-close-round"></i>
               </div>
             </div>
+            <div class="error-message">{{errors.question.answer}}</div>
           </div>
         </div>
       </div>

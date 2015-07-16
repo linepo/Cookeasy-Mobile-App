@@ -25,7 +25,6 @@ angular.module('starter.controllers')
   //Current answer in edition
   $scope.currentAnswer = {};
 
-  // errors............
   function checkQuizInfo(){
     $scope.errors = {};
     // Name of quiz
@@ -37,7 +36,27 @@ angular.module('starter.controllers')
     // Presence of main picture
   }
   function checkCurrentQuizInfo(){
+    $scope.errors.question = {};
+    // Name of question
+    if(!$scope.currentQuestion.title || $scope.currentQuestion.title == ''){
+      $scope.errors.question.title = 'Question should not be empty.';
+    } else if($scope.currentQuestion.title.length < 5){
+      $scope.errors.question.title = 'Question should be at least 5 characters.';
+    }
+    // Text answer type
+    if($scope.typeText === true){
+      if($scope.currentQuestion.answers.length < 4){
+        $scope.errors.question.answer = 'You should put 4 possible answers.';
+      }
+    }
+    // Image answer type
+    if($scope.typeImage === true){
 
+    }
+    // Delete error if no errors
+    if(Object.keys($scope.errors.question).length == 0){
+      delete $scope.errors.question;
+    }
   }
 
   //Go to next question
@@ -76,7 +95,17 @@ angular.module('starter.controllers')
 
   //Add an uncorrect answer in the list of answers for the current question
   $scope.uncorrectAnswer = function(){
-    //check errors............
+    $scope.errors = {};
+    // Name of answer
+    if(!$scope.currentAnswer.text || $scope.currentAnswer.text == ''){
+      $scope.errors.answer = 'Answer should not be empty.';
+    } else if($scope.currentAnswer.text.length < 5){
+      $scope.errors.answer = 'Answer should be at least 5 characters.';
+    }
+    if(Object.keys($scope.errors).length > 0){
+      return;
+    }
+
     $scope.currentAnswer.text = $scope.currentAnswer.text;
     $scope.currentAnswer.correct = false;
     //$scope.currentAnswer.picture =
@@ -90,7 +119,17 @@ angular.module('starter.controllers')
 
   //Add a correct answer in the list of answers for the current question
   $scope.correctAnswer = function(){
-    //check errors............
+    $scope.errors = {};
+    // Name of answer
+    if(!$scope.currentAnswer.text || $scope.currentAnswer.text == ''){
+      $scope.errors.answer = 'Answer should not be empty.';
+    } else if($scope.currentAnswer.text.length < 5){
+      $scope.errors.answer = 'Answer should be at least 5 characters.';
+    }
+    if(Object.keys($scope.errors).length > 0){
+      return;
+    }
+
     $scope.currentAnswer.text = $scope.currentAnswer.text;
     $scope.currentAnswer.correct = true;
     //$scope.currentAnswer.picture =
@@ -136,6 +175,7 @@ angular.module('starter.controllers')
     //check errors............
     //Get current question number
     var questNb = $scope.currentQuestion.number || 0;
+    console.log($scope.currentQuestion);
     //Save current question
     if(questNb){
       if(questNb < ($scope.questions.length+1)){
@@ -144,18 +184,20 @@ angular.module('starter.controllers')
         $scope.questions.push($scope.currentQuestion);
       }
     }
+    console.log($scope.questions);
     //Create quiz
-    var quiz = {};
-    quiz.questions = $scope.questions;
-    //questions.
-    quiz.questions.title = $scope.quizTitle;
-    //quiz.questions.type = ;
-    //quiz.questions.picture = $scope.game.picture;
-    console.log(quiz);
+    var game = {quiz: {}};
+    game.quiz.questions = $scope.questions;
+    game.title = $scope.quizTitle;
+    console.log("game : " + game);
+    console.log("game.quiz : " + game.quiz);
+    console.log("game.quiz.questions : " + game.quiz.questions);
+    console.log("game.title : " + game.title);
+
 
     //Go to final page -> display quiz
     $scope.dataLoading = true;
-    GameService.create(quiz).then(function(id){
+    GameService.create(game).then(function(id){
       $scope.dataLoading = false;
       //then lead to the display of the created quiz
       $state.go('displayQuiz', {id: id});

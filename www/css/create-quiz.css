@@ -97,7 +97,10 @@
 }
 .create-quiz .answer-name {
   display: inline-block;
-  width: 95%;
+  width: 88%;
+}
+.create-quiz .delete-answer {
+  display: inline-block;
 }
 .create-quiz .un-correct {
   display: inline-block;

@@ -47,7 +47,7 @@ angular.module('starter.controllers')
 
       function win (res){
         var json = JSON.parse(res.response);
-        $scope.callback(json.picture);
+        $scope.callback(json);
         $scope.uploadProgress = undefined;
       }
       function fail (err){

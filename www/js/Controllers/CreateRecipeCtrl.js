@@ -6,7 +6,7 @@ angular.module('starter.controllers')
   $scope.finishStep = false;
   $scope.createStep = false;
   $scope.errors = {};
-  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/picture/upload";
+  $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/pictures";
 
   //List of different courses
   $scope.courses = [{name: 'Starter', value: 1},{name: 'Main course', value: 2},
@@ -190,11 +190,9 @@ angular.module('starter.controllers')
     if(Object.keys($scope.errors).length > 0){
       return;
     }
-
     $scope.createRecipeInfo = false;
     $scope.createStep = true;
     $scope.finishStep = false;
-
     //Save current step
     if(stepNb){
       if(stepNb < ($scope.steps.length+1)){
@@ -203,14 +201,12 @@ angular.module('starter.controllers')
         $scope.steps.push($scope.currentStep);
       }
     }
-
     //Go to next step
     if(stepNb < ($scope.steps.length)){
       $scope.currentStep = $scope.steps[stepNb];
     } else {
       $scope.currentStep = {number: (stepNb+1)};
     }
-
     $scope.timer = false;
   }
 
@@ -218,14 +214,12 @@ angular.module('starter.controllers')
   $scope.stepBack = function(){
     // Get current step number
     var stepNb = $scope.currentStep.number;
-
     // Save current step
     if(stepNb > $scope.steps.length){
       $scope.steps.push($scope.currentStep);
     } else {
       $scope.steps[stepNb-1] = $scope.currentStep;
     }
-
     // Go to previous step
     if(stepNb > 1){
       $scope.currentStep = $scope.steps[stepNb-2];
@@ -234,7 +228,6 @@ angular.module('starter.controllers')
       $scope.createRecipeInfo = true;
       $scope.currentStep = {};
     }
-
     $scope.timer = false;
   };
 

@@ -13,7 +13,7 @@ angular.module('starter.controllers')
       $scope.dataLoading = false;
       $state.go('searchRecipe');
     },function(err){
-      $scope.error = err.error;
+      $scope.error = err.message;
       $scope.dataLoading = false;
       if(Object.keys($scope.error).length){
         return;

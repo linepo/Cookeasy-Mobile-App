@@ -14,7 +14,7 @@
       </div>
       <div class="main-picture">
         <i class="icon ion-camera camera"></i>
-        <p class="header-main-picture">Main picture of your quiz</p>
+        <p class="header-main-picture">Main picture of your quiz (optional)</p>
         <div class="quizPic">
           <picture-upload uploaded-picture="quizPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
         </div>
@@ -23,8 +23,18 @@
     </div>
 
     <div ng-show="createQuestion">
+      <div class="question-back-button">
+        <button ng-click="questionBack()" class="button button-assertive button-clear button-back-question">
+          <i class="icon ion-chevron-left"></i>
+        </button>
+      </div>
       <div class="question-number">
         <h1>Question {{currentQuestion.number}}</h1>
+      </div>
+      <div class="question-delete-button">
+        <button ng-click="deleteQuestion()" class="button button-assertive button-clear button-delete-question">
+          <i class="icon ion-close-round"></i>
+        </button>
       </div>
       <!-- question title -->
       <div class="question-title">
@@ -80,11 +90,13 @@
       <!-- type IMAGE -->
       <div ng-show="typeChecked('images')" class="imageQuestion">
         <div class="pic-text">
-            <input ng-model="$parent.currentQuestion.optionalText" type="text" placeholder="Text on picture (optional)"/>
+            <input ng-model="$parent.currentAnswer.optionalText" type="text" placeholder="Text on picture (optional)" ng-class="{'input-error': errors.answerText || errors.question.answer || errors.question.answerCorrect}"/>
         </div>
-        <div class="questPic">
-          <picture-upload uploaded-picture="currentQuestion.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
+        <div class="error-message">{{errors.answerText}} {{errors.question.answer}} {{errors.question.answerCorrect}}</div>
+        <div class="answer-pic" ng-class="{'input-error': errors.answerPic}">
+          <picture-upload uploaded-picture="currentAnswer.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
         </div>
+        <div class="error-message">{{errors.answerPic}}</div>
         <div class="add-answer-button">
           <button ng-click="uncorrectAnswer()" class="button icon-left ion-close-round button-assertive uncorrect">Uncorrect</button>
           <button ng-click="correctAnswer()" class="button icon-left ion-checkmark-round button-assertive correct">Correct</button>
@@ -92,10 +104,10 @@
 
         <div class="list-answers" ng-if="currentQuestion.answers.length">
           <p class="p">List of answers</p>
-          <div class="list">
+          <div class="list" ng-class="{'input-error': errors.question.answer || errors.question.answerCorrect}">
             <div class="item" ng-repeat="answer in currentQuestion.answers">
-              <div class="answer-name">{{answer.text}}</div>
-              <img ng-src="{{answer.picture.public_id | formatImg:150:100}}"/>
+              <div class="answer-text">{{answer.text}}</div>
+              <img ng-src="{{answer.picture.public_id | formatImg:100:50}}"/>
               <div class="un-correct">
                 <i ng-if="answer.correct == true" class="icon ion-checkmark-round"></i>
                 <i ng-if="answer.correct == false" class="icon ion-close-round"></i>

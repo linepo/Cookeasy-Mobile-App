@@ -93,14 +93,25 @@ angular.module('starter.controllers')
   function checkCurrentAnswerInfo(){
     $scope.errors = {};
     // TYPE TEXT --------------
-    // Name of answer
-    if(!$scope.currentAnswer.text || $scope.currentAnswer.text == ''){
-      $scope.errors.answer = 'Answer should not be empty.';
-    } else if($scope.currentAnswer.text.length < 3){
-      $scope.errors.answer = 'Answer should be at least 3 characters.';
+    if($scope.typeChecked('text')){
+      // Name of answer
+      if(!$scope.currentAnswer.text || $scope.currentAnswer.text == ''){
+        $scope.errors.answer = 'Answer should not be empty.';
+      } else if($scope.currentAnswer.text.length < 3){
+        $scope.errors.answer = 'Answer should be at least 3 characters.';
+      }
     }
     // TYPE IMAGE -------------
-
+    if($scope.typeChecked('images')){
+      // Optional text of answer
+      if($scope.currentAnswer.optionalText && $scope.currentAnswer.optionalText.length > 15){
+        $scope.errors.answerText = 'The optional text should not be more than 15 characters.';
+      }
+      // Presence of picture
+      if(!$scope.currentAnswer.picture){
+        $scope.errors.answerPic = 'A picture should be loaded.';
+      }
+    }
   }
 
   //Add an uncorrect answer in the list of answers for the current question
@@ -110,7 +121,7 @@ angular.module('starter.controllers')
     if(Object.keys($scope.errors).length > 0){
       return;
     }
-    if(typeChecked('image')){
+    if($scope.typeChecked('images')){
       $scope.currentAnswer.text = $scope.currentAnswer.optionalText;
     }
     $scope.currentAnswer.correct = false;
@@ -124,7 +135,7 @@ angular.module('starter.controllers')
     if(Object.keys($scope.errors).length > 0){
       return;
     }
-    if(typeChecked('image')){
+    if($scope.typeChecked('images')){
       $scope.currentAnswer.text = $scope.currentAnswer.optionalText;
     }
     $scope.currentAnswer.correct = true;
@@ -135,6 +146,25 @@ angular.module('starter.controllers')
   $scope.deleteAnswer = function (id){
     $scope.currentQuestion.answers.splice(id,1);
   }
+
+  //Delete a question
+  $scope.deleteQuestion = function(){
+    // Get current question number
+    var questNb = $scope.currentQuestion.number;
+    // Go to previous question
+    $scope.questionBack();
+    // Remove from array only if it is already in
+    if (questNb < ($scope.questions.length+1)) {
+      // Delete question
+      $scope.questions.splice(questNb-1,1);
+      // Change question numbers
+      $scope.questions.map(function(quest){
+        if(quest.number > questNb-1){
+          quest.number--;
+        }
+      });
+    }
+  };
 
   //Go to previous question
   $scope.questionBack = function(){
@@ -172,7 +202,6 @@ angular.module('starter.controllers')
     if(Object.keys($scope.errors).length > 0){
       return;
     }
-
     //Get current question number
     var questNb = $scope.currentQuestion.number || 0;
     //Save current question
@@ -188,7 +217,6 @@ angular.module('starter.controllers')
     quiz.questions = $scope.questions;
     quiz.title = $scope.quizTitle;
     quiz.picture = $scope.quizPicture;
-
     //Go to final page -> display quiz
     $scope.dataLoading = true;
     GameService.create(quiz).then(function(id){

@@ -48,8 +48,30 @@
 }
 
 /* ------- PAGE CREATE QUESTION WITH ANSWERS ------- */
+.create-quiz .question-back-button {
+  position: absolute;
+  top: 0px;
+  left: 6%;
+}
+.create-quiz .button.button-assertive.button-clear.button-back-question {
+  color: #B00000;
+  background-color: #FFE4E1;
+  border-color: #FFE4E1;
+  box-shadow: 0px 0px 0px #FFE4E1;
+}
 .create-quiz .question-number {
   margin-bottom: 25px;
+}
+.create-quiz .question-delete-button {
+  position: absolute;
+  top: 0px;
+  right: 6%;
+}
+.create-quiz .button.button-assertive.button-clear.button-delete-question {
+  color: #B00000;
+  background-color: #FFE4E1;
+  border-color: #FFE4E1;
+  box-shadow: 0px 0px 0px #FFE4E1;
 }
 .create-quiz .question-title input {
   vertical-align: middle;
@@ -114,14 +136,36 @@
   padding-left: 10px;
   margin-bottom: 20px;
 }
-.create-quiz .questPic {
+.create-quiz .answer-pic {
   background-color: white;
   width: 95%;
   margin: 0px auto;
   border: 1px solid #D0D0D0;
   box-sizing: border-box;
 }
+/* list of answers */
+.create-quiz .list {
+  width: 95%;
+  margin: 0px auto;
+  margin-bottom: 20px;
+}
+.create-quiz .item {
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.create-quiz .answer-text {
 
+}
+.create-quiz .item img {
+
+}
+.create-quiz .delete-answer {
+  display: inline-block;
+}
+.create-quiz .un-correct {
+  display: inline-block;
+}
 
 /* --------------BUTTONS-------------- */
 /* for the "Next" button on the first page */

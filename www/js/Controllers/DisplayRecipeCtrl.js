@@ -11,7 +11,7 @@ angular.module('starter.controllers')
   $scope.recipe = {};
   RecipeService.get($stateParams.id).then(function(recipe){
     $scope.recipe = recipe;
-    //$filter('orderObjectBy')($scope.recipe.pictures,'createdOn',-1);
+    $filter('orderObjectBy')($scope.recipe.pictures,'createdOn',-1);
   });
 
   // Current step
@@ -29,7 +29,7 @@ angular.module('starter.controllers')
   };
 
   // ---------------------slide box
-/*
+
     $ionicModal.fromTemplateUrl('image-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -74,7 +74,7 @@ angular.module('starter.controllers')
     $scope.slideChanged = function(index) {
       $scope.slideIndex = index;
     };
-*/
+
   // ------------------------------
 
   //When click on Start Recipe button -> display recipe step by step, begining with the first one

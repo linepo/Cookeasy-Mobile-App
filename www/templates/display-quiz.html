@@ -1,8 +1,57 @@
 <ion-view>
   <ion-content class="display-quiz">
 
-    <h1>bla bla bla</h1>
-    display quiz :
+    <div ng-show="quizInfo" class="ng-view" autoscroll="true">
+      <div class="quiz-title">
+        <h1>{{quiz.title}}</h1>
+      </div>
+      <div class="quiz-photo">
+        <img ng-src="{{quiz.picture.public_id | formatImg:250:200}}" alt="Quiz Photo" />
+      </div>
+      <div class="quiz-info-creation">
+        Created on {{quiz.createdOn | date}}, by
+        <a class="author" href ui-sref="profile({username: quiz.author.username})">{{quiz.author.username}}</a>
+      </div>
+      <button ng-click="questionForward()" class="button button-block button-assertive start">Start Quiz</button>
+    </div>
+
+    <div ng-show="displayQuestion" class="ng-view" autoscroll="true">
+      <div class="header-question">
+          <h1>Question {{questNb}}</h1>
+      </div>
+      <div class="card description-question">
+        <!-- type TEXT -->
+        <div ng-show="typeChecked('text')">
+          <div class="item item-text-wrap">
+            {{currentQuestion.title}}
+          </div>
+        </div>
+        <!-- type IMAGE -->
+        <div ng-show="typeChecked('images')">
+          <div class="item item-text-wrap">
+            {{currentQuestion.title}}
+          </div>
+        </div>
+      </div>
+      <div class="card description-answers">
+        <!-- type TEXT -->
+        <div ng-show="typeChecked('text')">
+
+        </div>
+        <!-- type IMAGE -->
+        <div ng-show="typeChecked('images')">
+
+        </div>
+      </div>
+      <div class="button-next">
+        <button ng-click="questionForward()" class="button ion-forward button-assertive"></button>
+      </div>
+    </div>
+
+    <div ng-show="endQuizButton" class="ng-view" autoscroll="true">
+      end part
+    </div>
+
 
   </ion-content>
 </ion-view>

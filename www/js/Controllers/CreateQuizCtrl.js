@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('CreateQuizCtrl', [ '$scope', '$rootScope', '$state', 'GameService',
-  function($scope, $rootScope, $state, GameService) {
+.controller('CreateQuizCtrl', [ '$scope', '$rootScope', '$state', '$http', 'GameService',
+  function($scope, $rootScope, $state, $http, GameService) {
 
   $scope.createQuizInfo = true;
   $scope.createQuestion = false;

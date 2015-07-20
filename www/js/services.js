@@ -26,8 +26,8 @@ angular.module('starter.services', [])
       },
       data: recipe
     };
-    $http(req).success(function(recipes){
-      deferred.resolve(recipes.id);
+    $http(req).success(function(recipe){
+      deferred.resolve(recipe.id);
     }).error(function(error){
       deferred.reject(error);
     });
@@ -36,8 +36,8 @@ angular.module('starter.services', [])
 
   services.get = function(id){
     var deferred = $q.defer();
-    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipes/' + id).success(function(recipes){
-      deferred.resolve(recipes);
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/recipes/' + id).success(function(recipe){
+      deferred.resolve(recipe);
     }).error(function(error){
       deferred.reject(error);
     });
@@ -222,8 +222,8 @@ angular.module('starter.services', [])
       },
       data: quiz
     };
-    $http(req).success(function(quizzes){
-      deferred.resolve(quizzes.id);
+    $http(req).success(function(quiz){
+      deferred.resolve(quiz.id);
     }).error(function(error){
       deferred.reject(error);
     });
@@ -232,8 +232,8 @@ angular.module('starter.services', [])
 
   services.get = function(id){
     var deferred = $q.defer();
-    $http.get('https://mysterious-eyrie-9135.herokuapp.com/games/' + id).success(function(quizzes){
-      deferred.resolve(quizzes);
+    $http.get('https://mysterious-eyrie-9135.herokuapp.com/games/' + id).success(function(quiz){
+      deferred.resolve(quiz);
     }).error(function(error){
       deferred.reject(error);
     });

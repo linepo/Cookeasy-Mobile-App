@@ -36,7 +36,23 @@
       <div class="card description-answers">
         <!-- type TEXT -->
         <div ng-show="typeChecked('text')">
-
+          <div ng-if="currentQuestion.answers.length<=2" class="list" ng-repeat="currentAnswer in currentQuestion.answers">
+            <label class="item item-radio">
+              <input value="text" type="radio">
+              <div class="item-content">{{currentAnswer.text}}</div>
+              <i class="radio-icon ion-checkmark"></i>
+            </label>
+          </div>
+          <div ng-if="currentQuestion.answers.length>2" class="list" ng-repeat="currentAnswer in currentQuestion.answers">
+            <ul class="list">
+              <li class="item item-checkbox">
+                 <label class="checkbox">
+                   <input type="checkbox">
+                 </label>
+                 {{currentAnswer.text}}
+              </li>
+            </ul>
+          </div>
         </div>
         <!-- type IMAGE -->
         <div ng-show="typeChecked('images')">

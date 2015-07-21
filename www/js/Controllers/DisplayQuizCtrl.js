@@ -16,6 +16,8 @@ angular.module('starter.controllers')
     // Current question
     $scope.currentQuestion = {answers: [], type: "text"};
     $scope.questNb = 0;
+    //Current answer
+    $scope.currentAnswer = {};
 
     $scope.typeChecked = function(type){
       if($scope.currentQuestion.type == type){
@@ -34,6 +36,10 @@ angular.module('starter.controllers')
       //Go to next question
       if($scope.questNb < ($scope.quiz.questions.length)){
         $scope.currentQuestion = $scope.quiz.questions[$scope.questNb];
+        $scope.currentAnswer = $scope.currentQuestion.answers;
+        console.log($scope.currentQuestion);
+        console.log($scope.currentQuestion.answers.length);
+        console.log($scope.currentAnswer);
         $scope.questNb++;
       } else {
         $scope.displayQuestion = false;

@@ -188,8 +188,8 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
         }
         return deferred.promise;
       }}
-    });
-/*
+    })
+
     .state('searchQuiz', {
       url: "/quiz/search",
       controller: 'SearchQuizCtrl',
@@ -205,7 +205,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
         return deferred.promise;
       }}
     });
-*/
+
   $httpProvider.interceptors.push('TokenInterceptor');
 
 }])

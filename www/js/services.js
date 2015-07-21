@@ -254,7 +254,7 @@ angular.module('starter.services', [])
     var deferred = $q.defer();
     var req = {
       method: 'GET',
-      url: 'https://mysterious-eyrie-9135.herokuapp.com/quizzes',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/games',
       params: {match: mysearch}
     };
     $http(req).success(function(quizzes){

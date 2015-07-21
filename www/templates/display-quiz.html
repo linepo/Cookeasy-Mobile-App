@@ -12,44 +12,44 @@
         Created on {{quiz.createdOn | date}}, by
         <a class="author" href ui-sref="profile({username: quiz.author.username})">{{quiz.author.username}}</a>
       </div>
-      <button ng-click="questionForward()" class="button button-block button-assertive start">Start Quiz</button>
+      <button ng-click="nextQuestion()" class="button button-block button-assertive start">Start Quiz</button>
     </div>
 
     <div ng-show="displayQuestion" class="ng-view" autoscroll="true">
+      <!-- Info -->
+      <div class="info">
+        Author: {{quiz.author.username}} - Your score: <i class="icon ion-star"></i> {{score}}
+      </div>
+      <!-- Title -->
       <div class="header-question">
           <h1>Question {{questNb}}</h1>
       </div>
       <div class="card description-question">
-        <!-- type TEXT -->
+        <!-- type TEXT or IMAGE -->
         <div ng-show="typeChecked('text')">
-          <div class="item item-text-wrap">
-            {{currentQuestion.title}}
-          </div>
-        </div>
-        <!-- type IMAGE -->
-        <div ng-show="typeChecked('images')">
           <div class="item item-text-wrap">
             {{currentQuestion.title}}
           </div>
         </div>
       </div>
+      <!-- List answers -->
       <div class="card description-answers">
         <!-- type TEXT -->
         <div ng-show="typeChecked('text')">
-          <div ng-if="currentQuestion.answers.length<=2" class="list" ng-repeat="currentAnswer in currentQuestion.answers">
-            <label class="item item-radio">
-              <input value="text" type="radio">
+          <div ng-if="!isMulti()" class="list">
+            <label ng-click="validateAnswer()" class="item item-radio" ng-repeat="currentAnswer in currentQuestion.answers">
+              <input ng-value="currentAnswer.text" type="radio" ng-model="currentQuestion.answer">
               <div class="item-content">{{currentAnswer.text}}</div>
               <i class="radio-icon ion-checkmark"></i>
             </label>
           </div>
-          <div ng-if="currentQuestion.answers.length>2" class="list" ng-repeat="currentAnswer in currentQuestion.answers">
+          <div ng-if="isMulti()" class="list">
             <ul class="list">
-              <li class="item item-checkbox">
+              <li class="item item-checkbox" ng-click="validateAnswer()" ng-repeat="currentAnswer in currentQuestion.answers">
                  <label class="checkbox">
-                   <input type="checkbox">
+                   <input ng-value="currentAnswer.text" type="checkbox" ng-model="answer.checked">
                  </label>
-                 {{currentAnswer.text}}
+                 <div class="item-content">{{currentAnswer.text}}</div>
               </li>
             </ul>
           </div>
@@ -59,13 +59,33 @@
 
         </div>
       </div>
+      <!-- Submit button -->
       <div class="button-next">
-        <button ng-click="questionForward()" class="button ion-forward button-assertive"></button>
+        <button ng-click="nextQuestion()" class="button button-block button-assertive start">Submit</button>
       </div>
     </div>
 
     <div ng-show="endQuizButton" class="ng-view" autoscroll="true">
-      end part
+      <div class="end-title">
+        <i class="icon ion-star"></i> Quiz finished
+        <i class="icon ion-star"></i>
+      </div>
+      <div class="stats">
+        <div class="list-title">Stats</div>
+        <div class="score">Final score: {{score}}</div>
+        <div class="score">Questions answered: {{quiz.questions.length}}</div>
+        <div class="score">Mistakes: {{nbMistake}}</div>
+      </div>
+      <div class="new-score">Your new score is now: {{score}}</div>
+
+      <!-- Retry button -->
+      <div class="button-next">
+        <button ng-click="retry()" class="button button-block button-assertive start">Retry</button>
+      </div>
+      <!-- Search another quiz -->
+      <div class="button-next">
+        <button ng-click="goToSearch()" class="button button-block button-assertive start">Search quiz</button>
+      </div>
     </div>
 
 

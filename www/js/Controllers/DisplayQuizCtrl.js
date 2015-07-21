@@ -5,6 +5,8 @@ angular.module('starter.controllers')
     $scope.errors = {};
     $scope.quizInfo = true;
     //$scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/games/" + $stateParams.id +"/pictures";
+    $scope.nbMistake = 0;
+    $scope.score = 0;
 
     $scope.quiz = {};
     GameService.get($stateParams.id).then(function(quiz){
@@ -26,20 +28,32 @@ angular.module('starter.controllers')
       return false;
     }
 
+    // If the anwsers are checkbox or radio button
+    $scope.isMulti = function(){
+      var count = 0;
+      var isMulti = false;
+      var answers = $scope.currentQuestion.answers;
+      answers.forEach(function(e){
+        if(e.correct){
+          count++;
+          if(count == 2) return isMulti = true; //checkbox
+        }
+      });
+      return isMulti; //radio button
+    }
+
     //When click on Start Quiz button -> display quiz question by question, begining with the first one
-    //When click on Question forward button -> display next question
-    $scope.questionForward = function(){
+    //When click on Submit button -> display next question
+    $scope.nextQuestion = function(){
       $scope.quizInfo = false;
       $scope.endQuizButton = false;
       $scope.displayQuestion = true;
+      //$scope.questNb++;
 
       //Go to next question
       if($scope.questNb < ($scope.quiz.questions.length)){
         $scope.currentQuestion = $scope.quiz.questions[$scope.questNb];
         $scope.currentAnswer = $scope.currentQuestion.answers;
-        console.log($scope.currentQuestion);
-        console.log($scope.currentQuestion.answers.length);
-        console.log($scope.currentAnswer);
         $scope.questNb++;
       } else {
         $scope.displayQuestion = false;
@@ -47,6 +61,41 @@ angular.module('starter.controllers')
       }
     };
 
+    $scope.validateAnswer = function(){
+      if($scope.isMulti()){
+         var answers = $scope.currentQuestion.answers;
+         answers.forEach(function(e){
+           var answer = e;
+           if(answer.correct && !answer.checked || !answer.correct && answer.checked) return fail();
+         });
+      }
+      else {
+        if($scope.currentQuestion.answer !== getCurrentAnswer()) return fail();
+      }
+      $scope.score = $scope.score + 5;
+      $scope.nextQuestion();
 
+    };
+
+    function fail(){
+      $scope.nbMistake++;
+      return $scope.score = $scope.score - 3;
+    };
+
+    function getCurrentAnswer(){
+       var answers = $scope.currentQuestion.answers;
+       answers.forEach(function(e){
+         if(e.correct) res = e.text;
+       });
+       return res;
+    };
+
+    $scope.retry = function(){
+      $state.reload();
+    };
+
+    $scope.goToSearch = function(){
+      $state.go('searchQuiz');
+    }
 
 }]);

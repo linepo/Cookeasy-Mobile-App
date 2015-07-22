@@ -13,7 +13,7 @@
           <div class="col col-50">
             <div class="quiz-card" ng-click="displayQuiz(quizzes[$index]._id)">
               <div class="quiz-picture">
-                <img ng-if="quizzes[$index].picture" ng-src="{{quizzes[$index].picture.public_id | formatImg:200:150}}" alt="Quiz Photo" />
+                <img ng-if="quizzes[$index].picture" ng-src="{{quizzes[$index].picture.public_id | formatImg:200:200}}" alt="Quiz Photo" />
                 <img ng-if="!quizzes[$index].picture" src="img/Cookie/Cookeasy.png" alt="Quiz Photo" />
               </div>
               <div class="quiz-name">{{quizzes[$index].title}}</div>
@@ -22,7 +22,7 @@
           <div class="col col-50" ng-if="$index+1 < quizzes.length">
             <div class="quiz-card" ng-click="displayQuiz(quizzes[$index+1]._id)">
               <div class="quiz-picture">
-                <img ng-if="quizzes[$index+1].picture" ng-src="{{quizzes[$index+1].picture.public_id | formatImg:200:150}}" alt="Quiz Photo" />
+                <img ng-if="quizzes[$index+1].picture" ng-src="{{quizzes[$index+1].picture.public_id | formatImg:200:200}}" alt="Quiz Photo" />
                 <img ng-if="!quizzes[$index+1].picture" src="img/Cookie/Cookeasy.png" alt="Quiz Photo" />
               </div>
               <div class="quiz-name">{{quizzes[$index+1].title}}</div>

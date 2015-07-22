@@ -206,5 +206,16 @@ angular.module('starter.controllers')
     timer = $timeout($scope.timerTick,1000);
   };
 
+  // ---------------------like recipe
+  $scope.recipeLiked = false;
+  $scope.like = function(){
+    RecipeService.likeRecipe($stateParams.id).then(function(){
+      $scope.recipeLiked = true;
+      console.log('Recipe liked');
+    },function(err){
+      $scope.recipeLiked = false;
+      alert("Error during liking recipe process: "+err);
+    });
+  };
 
 }]);

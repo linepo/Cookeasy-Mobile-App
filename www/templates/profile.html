@@ -57,14 +57,14 @@
       <div class="list card all-activity" ng-repeat="activity in user.activities">
         <div class="item item-info">
           <div class="activity-avatar">
-            <img ng-src="{{user.picture.public_id | formatImg:50:30}}" alt="Profile Photo" />
+            <img ng-src="{{user.picture.public_id | formatImg:50:50}}" alt="Profile Photo" />
           </div>
           <h2 class="activity-info">
             <div class="activity-title">{{activity.title}}</div>
             <div class="activity-date">{{activity.date | date}}</div>
           </h2>
         </div>
-        <div class="item item-body activity-content">
+        <div class="item item-body activity-content" ng-if="activity.content.title || activity.content.picture || activity.content.text">
           <div class="activity-content-title" ng-if="activity.content.title">{{activity.content.title}}</div>
           <div class="activity-content-picture" ng-if="activity.content.picture">
             <img ng-src="{{activity.content.picture | formatImg:250:200}}" alt="Picture" />

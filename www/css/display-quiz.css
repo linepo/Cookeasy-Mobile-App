@@ -7,6 +7,9 @@
 }
 /* ------------ First page : quiz info ------------ */
 /* about the title of the displayed quiz */
+.display-quiz .quiz-title h1 {
+  font-weight: bold;
+}
 .display-quiz h1 {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 30px;
@@ -37,7 +40,35 @@
   width: 98%;
 }
 /* ------------ Question page : list answers ------------ */
-
+.display-quiz .info {
+  text-align: center;
+  color: grey;
+  font-style: italic;
+}
+/* type images */
+.display-quiz .row {
+  text-align: center;
+}
+.display-quiz img {
+  width: 100%;
+  border: 7px solid white;
+}
+.display-quiz .answer-card {
+  position: relative;
+}
+.display-quiz .answer-name {
+  position: absolute;
+  bottom: 10px;
+  padding: 0px 5px 4px 5px;
+  background-color: rgba(0,0,0,0.4);
+  border-top: 1px solid #555;
+  color: white;
+  right: 7px;
+  left: 7px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
 /* ------------ End page : stats info ------------ */
 .display-quiz .end-title {
@@ -64,8 +95,18 @@
   text-align: left;
   margin-left: 3px;
 }
-.display-quiz .new-score {
+.display-quiz .new-score,
+.display-quiz .like {
+  text-align: center;
   margin-top: 10px;
   margin-left: 3%;
   margin-bottom: 20px;
+}
+.display-quiz .icon-combination {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.display-quiz .icon.ion-thumbsup {
+  font-size: 20px;
 }

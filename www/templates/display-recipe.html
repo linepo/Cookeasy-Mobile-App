@@ -177,6 +177,11 @@
       <picture-upload uploaded-picture="uploadedPicture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
     </div>
     <br/>
+    
+    <div class="like">Do you like it ?
+      <i ng-show="!recipeLiked" class="icon ion-thumbsup" ng-click="like()"></i>
+      <div ng-show="recipeLiked">Thank's !</div>
+    </div>
 
     <div class="previous-recipe-pictures" ng-if="recipe.pictures.public_id">
       <p>Pictures of this recipe by users:</p>

@@ -61,7 +61,7 @@ angular.module('starter.controllers')
       }
     };
 
-    $scope.validateAnswer = function(){
+    $scope.validateAnswer = function(answer){
       if($scope.isMulti()){
          var answers = $scope.currentQuestion.answers;
          answers.forEach(function(e){
@@ -70,11 +70,10 @@ angular.module('starter.controllers')
          });
       }
       else {
-        if($scope.currentQuestion.answer !== getCurrentAnswer()) return fail();
+        if(answer.text !== getCurrentAnswer()) return fail();
       }
       $scope.score = $scope.score + 5;
       $scope.nextQuestion();
-
     };
 
     function fail(){
@@ -91,11 +90,34 @@ angular.module('starter.controllers')
     };
 
     $scope.retry = function(){
-      $state.reload();
+      $state.transitionTo($state.current, $stateParams, {
+          reload: true,
+          inherit: true,
+          notify: true
+      });
     };
 
     $scope.goToSearch = function(){
       $state.go('searchQuiz');
-    }
+    };
+
+    $scope.onClickAnswer = function(answer){
+      if($scope.isMulti()){
+        answer.checked = !answer.checked;
+      } else {
+        $scope.validateAnswer(answer);
+      }
+    };
+
+    $scope.gameLiked = false;
+    $scope.like = function(){
+      GameService.likeGame($stateParams.id).then(function(){
+        $scope.gameLiked = true;
+        console.log('Game liked');
+      },function(err){
+        $scope.gameLiked = false;
+        alert("Error during liking game process: "+err);
+      });
+    };
 
 }]);

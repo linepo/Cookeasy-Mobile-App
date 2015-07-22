@@ -113,9 +113,13 @@
 .profile .activity-info{
   display: inline-block;
   margin-left: 15px;
+  width: 75%;
 }
 .profile .activity-title{
   white-space: normal;
+}
+.profile .item {
+  white-space: normal !important;
 }
 .profile .activity-date{
   margin-top: 5px;

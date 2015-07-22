@@ -176,6 +176,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
 
     .state('displayQuiz', {
       url: "/quiz/display/:id",
+      cache: false,
       controller: 'DisplayQuizCtrl',
       templateUrl: "templates/display-quiz.html",
       resolve: { promise: function($q,$state,Header){

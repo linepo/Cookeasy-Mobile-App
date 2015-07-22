@@ -3,7 +3,7 @@
 
     <div ng-show="quizInfo" class="ng-view" autoscroll="true">
       <div class="quiz-title">
-        <h1>{{quiz.title}}</h1>
+        <h1>{{quiz.title}}   <i class="icon ion-lock-combination"></i></h1>
       </div>
       <div class="quiz-photo">
         <img ng-src="{{quiz.picture.public_id | formatImg:250:200}}" alt="Quiz Photo" />
@@ -16,6 +16,9 @@
     </div>
 
     <div ng-show="displayQuestion" class="ng-view" autoscroll="true">
+      <div class="quiz-title">
+        <h1>{{quiz.title}}   <i class="icon ion-lock-combination"></i></h1>
+      </div>
       <!-- Info -->
       <div class="info">
         Author: {{quiz.author.username}} - Your score: <i class="icon ion-star"></i> {{score}}
@@ -26,7 +29,7 @@
       </div>
       <div class="card description-question">
         <!-- type TEXT or IMAGE -->
-        <div ng-show="typeChecked('text')">
+        <div ng-show="typeChecked('text') || typeChecked('images')">
           <div class="item item-text-wrap">
             {{currentQuestion.title}}
           </div>
@@ -56,7 +59,26 @@
         </div>
         <!-- type IMAGE -->
         <div ng-show="typeChecked('images')">
-
+          <div class="display-answers-list" ng-repeat="currentAnswer in currentQuestion.answers track by $index" ng-if="$index%2 === 0">
+              <div class="row" ng-if="$index < currentQuestion.answers.length">
+                <div class="col col-50">
+                  <div class="answer-card" ng-click="onClickAnswer(currentQuestion.answers[$index])">
+                    <div class="answer-picture">
+                      <img ng-src="{{currentQuestion.answers[$index].picture.public_id | formatImg:200:150}}" alt="Answer Photo" />
+                    </div>
+                    <div class="answer-name">{{currentQuestion.answers[$index].text}}</div>
+                  </div>
+                </div>
+                <div class="col col-50" ng-if="$index+1 < currentQuestion.answers.length">
+                  <div class="answer-card" ng-click="onClickAnswer(currentQuestion.answers[$index+1])">
+                    <div class="answer-picture">
+                      <img ng-src="{{currentQuestion.answers[$index+1].picture.public_id | formatImg:200:150}}" alt="Answer Photo" />
+                    </div>
+                    <div class="answer-name">{{currentQuestion.answers[$index+1].text}}</div>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
       </div>
       <!-- Submit button -->
@@ -77,7 +99,11 @@
         <div class="score">Mistakes: {{nbMistake}}</div>
       </div>
       <div class="new-score">Your new score is now: {{score}}</div>
-
+      <div class="icon-combination"><i class="icon ion-lock-combination"></i></div>
+      <div class="like">Do you like it ?
+        <i ng-show="!gameLiked" class="icon ion-thumbsup" ng-click="like()"></i>
+        <div ng-show="gameLiked">Thank's !</div>
+      </div>
       <!-- Retry button -->
       <div class="button-next">
         <button ng-click="retry()" class="button button-block button-assertive start">Retry</button>

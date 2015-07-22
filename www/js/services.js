@@ -88,6 +88,20 @@ angular.module('starter.services', [])
     return deferred.promise;
   };
 
+  services.likeRecipe = function(id){
+    var deferred = $q.defer();
+    var req = {
+      method: 'PUT',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipes/' + id + '/like'
+    };
+    $http(req).success(function(){
+      deferred.resolve();
+    }).error(function(res){
+      deferred.reject(res.error);
+    });
+    return deferred.promise;
+  };
+
   return services;
 })
 
@@ -261,6 +275,20 @@ angular.module('starter.services', [])
       deferred.resolve(quizzes);
     }).error(function(error){
       deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
+  services.likeGame = function(id){
+    var deferred = $q.defer();
+    var req = {
+      method: 'PUT',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/games/' + id + '/like'
+    };
+    $http(req).success(function(){
+      deferred.resolve();
+    }).error(function(res){
+      deferred.reject(res.error);
     });
     return deferred.promise;
   };

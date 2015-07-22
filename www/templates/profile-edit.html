@@ -5,9 +5,9 @@
       <button class="button button-clear button-positive" ng-click="saveAll()">Save</button>
     </div>
 
-    <div class="profile-photo">
-      <img ng-src="{{user.picture.public_id | formatImg:250:200}}" alt="Profile Photo" />
-      <!-- <picture-upload uploaded-picture="user.picture" callback="setPicture" target-url="uploadPictureUrl"></picture-upload> -->
+    <div class="profile-photo" ng-click="editProfilePic()">
+      <img ng-show="!editPic" ng-src="{{user.picture.public_id | formatImg:250:200}}" alt="Profile Photo" />
+      <picture-upload ng-show="editPic" uploaded-picture="profilPic" callback="setPicture" target-url="uploadPictureUrl"></picture-upload>
     </div>
 
     <div class="username">{{user.username}}</div>
@@ -32,16 +32,31 @@
           <input ng-model="$parent.user.location" type="text" placeholder="Location" />
         </div>
       </div>
-      <div class="item item-icon-left">
-        <i class="icon ion-key"></i>
-        <div class="password-modif">
-          <input ng-model="$parent.user.password" type="text" placeholder="Password" />
-        </div>
-      </div>
     </div>
 
     <div class="description-area-modif">
       <textarea ng-model="$parent.user.description" type="text" placeholder="Description"></textarea>
+    </div>
+
+    <div class="list pw-modif">
+      <div class="item item-icon-left">
+        <i class="icon ion-locked"></i>
+        <div class="password-now">
+          <input ng-model="$parent.user.passwordNow" type="text" placeholder="Password now" />
+        </div>
+      </div>
+      <div class="item item-icon-left">
+        <i class="icon ion-unlocked"></i>
+        <div class="password-modif">
+          <input ng-model="$parent.user.passwordNew" type="text" placeholder="Password new" />
+        </div>
+      </div>
+      <div class="item item-icon-left">
+        <i class="icon ion-locked"></i>
+        <div class="password-again">
+          <input ng-model="$parent.user.passwordAgain" type="text" placeholder="Password new again" />
+        </div>
+      </div>
     </div>
 
     </ion-content>

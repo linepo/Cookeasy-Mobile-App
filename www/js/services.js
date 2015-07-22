@@ -88,6 +88,19 @@ angular.module('starter.services', [])
     return deferred.promise;
   };
 
+  services.deleteComment = function (id,comment){
+    var deferred = $q.defer();
+    var req = {
+
+    };
+    $http(req).success(function(data){
+      deferred.resolve(data);
+    }).error(function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  };
+
   services.likeRecipe = function(id){
     var deferred = $q.defer();
     var req = {

@@ -403,6 +403,13 @@ p.info {
 .display-recipe .comment-message{
 
 }
+/* delete a comment */
+.display-recipe .delete-comment {
+  margin-left: 25%;
+  color: #800000 !important;
+  font-size: 12%;
+}
+
 
 /*----------------------------------------------------------------*/
 /*---------------------------ERRORS-------------------------------*/

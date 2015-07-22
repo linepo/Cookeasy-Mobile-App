@@ -12,6 +12,7 @@
 /* about the profile photo */
 .profile-edit .profile-photo {
   text-align: center;
+  margin-bottom: 20px;
 }
 .profile-edit .profile-photo img {
   width: 40%;
@@ -58,14 +59,17 @@
 .profile-edit .icon.ion-person,
 .profile-edit .icon.ion-wand,
 .profile-edit .icon.ion-location,
-.profile-edit .icon.ion-key {
+.profile-edit .icon.ion-locked,
+.profile-edit .icon.ion-unlocked {
   max-height: 100%;
   left: 10px;
 }
 .profile-edit .name-modif,
 .profile-edit .date-of-birth-modif,
 .profile-edit .location-modif,
-.profile-edit .password-modif {
+.profile-edit .password-now,
+.profile-edit .password-modif,
+.profile-edit .password-again {
   display: inline-block;
   width: 80%;
   margin-top: 10px;
@@ -74,14 +78,18 @@
 }
 .profile-edit .name-modif input,
 .profile-edit .location-modif input,
-.profile-edit .password-modif input {
+.profile-edit .password-now input,
+.profile-edit .password-modif input,
+.profile-edit .password-again input {
   font-size: 100%;
 }
 .profile-edit .date-of-birth-modif input{
   padding-top: 0px;
   font-size: 100%;
 }
-.profile-edit .password-modif {
+.profile-edit .password-now,
+.profile-edit .password-modif,
+.profile-edit .password-again {
   -webkit-text-security: disc;
   height:20px;
   -webkit-appearance: textfield;
@@ -97,13 +105,17 @@
   background-color: white;
   color: black;
   border: 1px solid #ddd;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .profile-edit .description-area-modif textarea {
   width: 100%;
   resize: none;
   height: 80px;
   font-size: 100%;
-  font
+}
+.profile-edit .list.pw-modif {
+  margin-bottom: 20px;
 }
 
 /*----------------------------------------------------------------*/

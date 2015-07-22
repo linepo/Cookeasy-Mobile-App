@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('ProfileEditCtrl', [ '$scope', '$state', '$stateParams', 'UserService',
-  function($scope, $state, $stateParams, UserService) {
+.controller('ProfileEditCtrl', [ '$scope', '$state', '$stateParams', '$http', 'UserService',
+  function($scope, $state, $stateParams, $http, UserService) {
 
     $scope.user = {};
     UserService.getUser($stateParams.username).then(function(user){
@@ -35,7 +35,15 @@ angular.module('starter.controllers')
       });
     };
 
+    $scope.editPic = false;
+    $scope.editProfilePic = function(){
+      $scope.editPic = true;
+    };
 
+    $scope.uploadPictureUrl = "https://mysterious-eyrie-9135.herokuapp.com/pictures";
+    $scope.setPicture = function(picture){
+      $scope.profilPic = picture;
+    };
 
 
 }]);

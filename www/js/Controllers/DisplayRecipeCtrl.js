@@ -179,6 +179,13 @@ angular.module('starter.controllers')
     });
   };
 
+  $scope.deleteMyComment = function(){
+    RecipeService.deleteComment($scope.recipe._id,comment).then(function(comment){
+      //delete comment in the list of comments
+      //$scope.recipe.comments.splice(id,1); id??
+    });
+  };
+
   // ---------------------chronometer
   var timer;
   // Pause timer

@@ -191,20 +191,27 @@ angular.module('starter.services', [])
    var userLogged = false;
    var auth = {
      currentUser: currentUser,
-     setUser: setUser
+     setUser: setUser,
+     logout: logout
    };
 
    function currentUser(){
      if(!userLogged){
-       var user = $window.localStorage.user;
+       var user = $window.sessionStorage.user;
        if(user) userLogged = JSON.parse(user);
      }
      return userLogged;
    }
 
+   function logout(){
+     delete $window.sessionStorage.user;
+     delete $window.sessionStorage['token'];
+     userLogged = false;
+   }
+
    function setUser(token,user){
-     $window.localStorage.user = JSON.stringify(user);
-     $window.localStorage['token'] = token;
+     $window.sessionStorage.user = JSON.stringify(user);
+     $window.sessionStorage['token'] = token;
    }
    return auth;
 })
@@ -213,8 +220,8 @@ angular.module('starter.services', [])
     return {
       request: function (config) {
         config.headers = config.headers || {};
-        if ($window.localStorage.token) {
-          config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
+        if ($window.sessionStorage.token) {
+          config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
         }
         return config;
       }

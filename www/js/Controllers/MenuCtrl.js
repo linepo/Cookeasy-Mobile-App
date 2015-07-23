@@ -4,6 +4,10 @@ angular.module('starter.controllers')
 
     $scope.userLogged = AuthenticationService.currentUser();
 
+    $scope.logout = function(){
+      console.log('logout');
+      AuthenticationService.logout();
+    }
 
 
 }]);

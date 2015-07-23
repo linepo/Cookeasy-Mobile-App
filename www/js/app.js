@@ -47,7 +47,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -63,7 +63,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -79,7 +79,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -95,7 +95,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -111,7 +111,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -127,7 +127,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -149,7 +149,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -165,7 +165,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -182,7 +182,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');
@@ -198,7 +198,7 @@ angular.module('App', ['ionic', 'starter.controllers', 'starter.services', 'star
       resolve: { promise: function($q,$state,Header){
         var deferred = $q.defer();
         deferred.resolve();
-        if(localStorage.token){
+        if(sessionStorage.token){
           Header.show();
         } else {
           $state.go('login');

@@ -88,10 +88,11 @@ angular.module('starter.services', [])
     return deferred.promise;
   };
 
-  services.deleteComment = function (id,comment){
+  services.deleteComment = function (recipeId,commentId){
     var deferred = $q.defer();
     var req = {
-
+      method: 'DELETE',
+      url: 'https://mysterious-eyrie-9135.herokuapp.com/recipes/' + recipeId + '/comments/' + commentId
     };
     $http(req).success(function(data){
       deferred.resolve(data);

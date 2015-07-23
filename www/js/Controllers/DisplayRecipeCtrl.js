@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService',
-  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService) {
+.controller('DisplayRecipeCtrl', [ '$scope', '$state', '$stateParams', '$http', '$filter', '$timeout', '$ionicModal', '$ionicSlideBoxDelegate', '$cordovaFileTransfer', 'RecipeService', 'AuthenticationService',
+  function($scope, $state, $stateParams, $http, $filter, $timeout, $ionicModal, $ionicSlideBoxDelegate, $cordovaFileTransfer, RecipeService, AuthenticationService) {
 
   $scope.errors = {};
   $scope.displayInfo = true;
@@ -179,10 +179,17 @@ angular.module('starter.controllers')
     });
   };
 
-  $scope.deleteMyComment = function(){
-    RecipeService.deleteComment($scope.recipe._id,comment).then(function(comment){
-      //delete comment in the list of comments
-      //$scope.recipe.comments.splice(id,1); id??
+  $scope.isUser = function(comment){
+    var user = AuthenticationService.currentUser();
+    if(!user){
+      return false;
+    }
+    return user.username === comment.author.username;
+  };
+
+  $scope.deleteMyComment = function(comment, index){
+    RecipeService.deleteComment($scope.recipe._id,comment._id).then(function(comment){
+      $scope.recipe.comments.splice(index,1);
     });
   };
 

@@ -96,7 +96,7 @@
               <br/>
               <span class="comment-date">{{comment.createdOn | date}}</span>
             </h2>
-            <button ng-if="" ng-click="deleteMyComment()" class="button button-assertive button-clear delete-comment">
+            <button ng-if="isUser(comment)" ng-click="deleteMyComment(comment, $index)" class="button button-assertive button-clear delete-comment">
               <i class="icon ion-close-round"></i>
             </button>
           </div>

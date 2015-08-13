@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('SignUpCtrl', [ '$scope', '$rootScope', '$state', '$location','$window', 'UserService','AuthenticationService', 'Header',
-    function($scope, $rootScope, $state, $location, $window, UserService, AuthenticationService, Header) {
+.controller('SignUpCtrl', [ '$scope', '$rootScope', '$state', '$window', 'UserService','AuthenticationService', 'Header',
+    function($scope, $rootScope, $state, $window, UserService, AuthenticationService, Header) {
 
   $scope.user = {email: '', password: '', username: '', confirmPassword: ''};
   $scope.error = "";
@@ -34,6 +34,9 @@ angular.module('starter.controllers')
     },function(error){
       $scope.error = error;
       $scope.dataLoading = false;
+      if(Object.keys($scope.error).length){
+        return;
+      }
     });
   };
 

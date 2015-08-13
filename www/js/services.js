@@ -163,9 +163,9 @@ angular.module('starter.services', [])
       data: {email: email, password: password, username: username }
     };
     $http(req).success(function(data){
-      deferred.resolve(data.token,data.user);
-    }).error(function(res){
-      deferred.reject(res.error);
+      deferred.resolve(data);
+    }).error(function(error){
+      deferred.reject(error);
     });
     return deferred.promise;
   };

@@ -41,7 +41,7 @@ angular.module('starter.controllers')
       options.fileName = fileUri.substr(fileUri.lastIndexOf('/')+1);
       options.mimeType = "image/jpeg";
       options.chunkedMode = false;
-      options.headers = {'Authorization': 'Bearer ' + $window.localStorage.token};
+      options.headers = {'Authorization': 'Bearer ' + $window.sessionStorage.token};
 
       $cordovaFileTransfer.upload($scope.targetUrl, fileUri, options).then(win, fail, progress);
 

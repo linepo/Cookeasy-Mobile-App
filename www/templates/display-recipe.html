@@ -21,11 +21,13 @@
     <div class="recipe-info-creation">
       Created on {{recipe.createdOn | date}}, by
       <a class="author" href ui-sref="profile({username: recipe.author.username})">{{recipe.author.username}}</a>
+      <br/>
+      {{recipe.likes.length}} likes
     </div>
     <br/>
 
     <div class="utensils-beaker">
-      <button ng-click="setUtensils()" ng-if="utensil" class="button button-block icon-center ion-beaker">  Utensils
+      <button ng-click="setUtensils()" ng-if="recipe.utensils" class="button button-block icon-center ion-beaker">  Utensils
         <div class="icon" ng-class="{'ion-arrow-down-b': !showUtensil, 'ion-arrow-up-b': showUtensil}"></div>
       </button>
       <div ng-show="showUtensil" class="item" ng-repeat="utensil in recipe.utensils">
@@ -55,14 +57,14 @@
 
       <div class="previous-recipe-pictures" ng-if="recipe.pictures.public_id">
         <p>Pictures of this recipe by other users:</p>
-        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures.public_id | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
+        <img class="all-pictures" ng-click="goToSlide($index)" ng-repeat="picture in recipe.pictures | orderObjectBy:'createdOn':-1 track by $index" ng-src="{{picture.public_id | formatImg:100:100}}"/>
       </div>
       <br/>
       <script id="image-modal.html" type="text/ng-template">
         <div class="modal image-modal transparent" ng-click="closeModal()">
           <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
-            <ion-slide ng-repeat="image in recipe.pictures.public_id">
-              <img ng-src="{{image.url}}" class="fullscreen-image" />
+            <ion-slide ng-repeat="image in recipe.pictures">
+              <img ng-src="{{image.public_id}}" class="fullscreen-image" />
             </ion-slide>
           </ion-slide-box>
         </div>

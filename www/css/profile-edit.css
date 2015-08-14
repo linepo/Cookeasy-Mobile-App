@@ -117,6 +117,12 @@
 .profile-edit .list.pw-modif {
   margin-bottom: 20px;
 }
+.profile-edit .change{
+  margin-bottom: 6px;
+  margin-left: 6px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 17px;
+}
 
 /*----------------------------------------------------------------*/
 /*---------------------------ERRORS-------------------------------*/

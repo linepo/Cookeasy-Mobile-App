@@ -39,7 +39,8 @@
       <p class="ingredients-title">Ingredients:</p>
       <div class="list list-inset">
         <div class="item" ng-repeat="ingredient in recipe.ingredients">
-          {{ingredient.qte}} {{ingredient.unit}} of {{ingredient.name}}</div>
+          {{ingredient.qte}} {{ingredient.unit}}<span ng-if="ingredient.unit"> of </span>{{ingredient.name}}
+        </div>
       </div>
 
       <div class="steps-load">

@@ -48,7 +48,7 @@ describe('Controllers - CreateRecipeCtrl', function(){
       expect(scope.createRecipeInfo).toBe(true);
       expect(scope.createStep).toBe(false);
       expect(scope.finishStep).toBe(false);
-      expect(scope.uploadPictureUrl).toEqual("https://mysterious-eyrie-9135.herokuapp.com/picture/upload");
+      expect(scope.uploadPictureUrl).toEqual("https://mysterious-eyrie-9135.herokuapp.com/pictures");
     });
 
     it('course and difficulty should be choosen among the list', function(){
